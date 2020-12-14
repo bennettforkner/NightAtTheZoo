@@ -66,7 +66,7 @@ public class data_names {
 			names.add(new Name("Alaric","Gaukrogers"));
 			names.add(new Name("Habaccuc","Button"));
 			names.add(new Name("Prospero","Whitfoot"));
-			names.add(new Name("Sméagol","Proudfoot"));
+			names.add(new Name("Smeagol","Proudfoot"));
 			names.add(new Name("Pamphila","Lothran"));
 			names.add(new Name("Lalia","Proudfoot"));
 			names.add(new Name("Marroc","Brown"));

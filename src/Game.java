@@ -15,7 +15,7 @@ public class Game {
 		String name = in.nextLine();
 		PRINTER.prompt("\nEnter your catch phrase: ");
 		String catchPhrase = in.nextLine();
-		CONTROLLER.player = new Player(name, 5, 1, catchPhrase);
+		CONTROLLER.player = new Player(name, 5, 1, catchPhrase,0);
 		
 		this.creatures = new data_creatures();
 		data_events.init();

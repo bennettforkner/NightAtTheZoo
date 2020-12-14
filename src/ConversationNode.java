@@ -39,7 +39,7 @@ public class ConversationNode {
 			PRINTER.narrateln("\nYou can respond:");
 			int count = 0;
 			for (Response resp : responses) {
-				System.out.println("[" + count++ + "]: " + resp.getResponse());
+				PRINTER.narrateln("[" + count++ + "]: " + resp.getResponse());
 			}
 			PRINTER.prompt("\nWhat would you like to say?: ");
 			

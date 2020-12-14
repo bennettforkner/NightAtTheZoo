@@ -16,12 +16,16 @@ private String name;
 	private ArrayList<ConversationEvent> conversations;
 	
 	public Creature(String name,int hp,int strength,String cachePhrase) {
+		this(name,hp,strength,cachePhrase,new ArrayList<Item>());
+	}
+	
+	public Creature(String name,int hp,int strength,String cachePhrase,ArrayList<Item> inventory) {
 		setName(name);
 		this.healthPoints = hp;
 		this.maxHealthPoints = hp;
 		setStrength(strength);
 		setCachePhrase(cachePhrase);
-		inventory = new ArrayList<Item>();
+		this.inventory = inventory;
 		conversations = new ArrayList<ConversationEvent>();
 	}
 
@@ -29,7 +33,7 @@ private String name;
 	 * @return the name
 	 */
 	public String getName() {
-		return name;
+		return PRINTER.GREEN + name + PRINTER.RESET;
 	}
 
 	/**
@@ -103,7 +107,7 @@ private String name;
 	 * @param item the item to remove
 	 */
 	public void removeFromInventory(Item item) {
-		this.inventory.add(item);
+		this.inventory.remove(item);
 	}
 
 	/**
