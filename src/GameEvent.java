@@ -1,4 +1,3 @@
-
 public interface GameEvent {
 	
 	public void doEvent();
