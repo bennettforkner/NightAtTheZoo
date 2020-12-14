@@ -29,6 +29,7 @@ public class InteractionEvent implements GameEvent {
 	public void doEvent() {
 		interaction.run();
 		this.usesLeft--;
+		System.out.println(this.usesLeft);
 		if (this.usesLeft == 0) {
 			CONTROLLER.GAME.getLocations().remove(this);
 		}
