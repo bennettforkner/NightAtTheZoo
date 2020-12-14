@@ -1,5 +1,6 @@
 
 public class CONTROLLER {
+	
 	public static Game GAME;
 	
 	public static Player player;
@@ -11,4 +12,6 @@ public class CONTROLLER {
 			e.printStackTrace();
 		}
 	}
+	
+	
 }

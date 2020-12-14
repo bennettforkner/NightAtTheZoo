@@ -96,7 +96,6 @@ public class Game {
 				PRINTER.errorln("\nPLEASE ENTER A VALID COMMAND");
 			}
 		}
-		playGame();
 	}
 	
 	public void playGame() {
