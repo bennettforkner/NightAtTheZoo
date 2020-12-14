@@ -62,6 +62,8 @@ public class InteractionEvent implements GameEvent {
 	public String getTitle() {
 		return title;
 	}
+	
+	
 
 	/**
 	 * @return the usesLeft
