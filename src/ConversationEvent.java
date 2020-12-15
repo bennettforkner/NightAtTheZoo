@@ -20,6 +20,7 @@ public class ConversationEvent implements GameEvent {
 	
 	@Override
 	public void doEvent() {
+		CONTROLLER.GAME.controls.addControl(new Control("SAY", "say one of the text options listed.", 's', null));
 		PRINTER.narrateln("\n" + introduction);
 		ConversationNode currentNode = conversations.get(0);
 		

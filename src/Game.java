@@ -8,6 +8,7 @@ public class Game {
 	private Location currentLocation;
 	public boolean preGameRunning;
 	public data_creatures creatures;
+	public Controls controls;
 	
 	public void init() {
 		Scanner in = new Scanner(System.in);
@@ -16,6 +17,12 @@ public class Game {
 		PRINTER.prompt("\nEnter your catch phrase: ");
 		String catchPhrase = in.nextLine();
 		CONTROLLER.player = new Player(name, 5, 1, catchPhrase,0);
+		ArrayList<Control> controls = new ArrayList<Control>();
+		controls.add(new Control("GO", "move from one location to another.", 'g',() -> {}));
+		controls.add(new Control("HELP", "display this menu.", 'h', () -> {
+			PRINTER.narrate(this.controls.toString());
+		}));
+		this.controls = new Controls(controls);
 		
 		this.creatures = new data_creatures();
 		data_events.init();
@@ -34,13 +41,15 @@ public class Game {
 	public void playPreGame() {
 		currentLocation = locations.get(0);
 		PRINTER.narrateln("\nYou started the game.");
+			
+		PRINTER.narrateln("\n" + controls.toString());
 		while(true) {
 			if (!preGameRunning) {
 				break;
 			}
 			try {Runtime.getRuntime().exec("cls");} catch (IOException e) {}
 			
-			PRINTER.narrateln("\n\n\nYou are currently at " + currentLocation.getLocationName());
+			PRINTER.narrateln("\nYou are currently at " + currentLocation.getLocationName());
 			
 			if (currentLocation.getAccessibleLocations().length > 0) {
 				CONTROLLER.sleep(1000);
@@ -75,9 +84,15 @@ public class Game {
 			PRINTER.prompt("\nWhat would you like to do?: ");
 			
 			Scanner in = new Scanner(System.in);
-			String choice = in.nextLine();
+			String[] arguments = in.nextLine().split(" ");
 			
-			if (choice.compareTo("") == 0) {
+			for (Control c : controls.getControls()) {
+				if (arguments[0].compareToIgnoreCase(c.controlName) == 0 || arguments[0].compareToIgnoreCase(Character.toString(c.oneChar)) == 0) {
+					c.run();
+				}
+			}
+			
+			/*if (choice.compareTo("") == 0) {
 				continue;
 			} else if (choice.charAt(0) == 'g') {
 				int index = Integer.parseInt(choice.replaceAll("[\\D]", ""));
@@ -94,7 +109,7 @@ public class Game {
 				//fight()
 			} else {
 				PRINTER.errorln("\nPLEASE ENTER A VALID COMMAND");
-			}
+			}*/
 		}
 	}
 	
