@@ -19,6 +19,24 @@ public class Controls {
 		controls.add(c);
 	}
 	
+	public Control getControl(String controlName) {
+		for (Control c : controls) {
+			if (c.controlName.compareToIgnoreCase(controlName) == 0 ) {
+				return c;
+			}
+		}
+		return null;
+	}
+	
+	public Control getControl(char oneChar) {
+		for (Control c : controls) {
+			if (Character.toLowerCase(c.oneChar) == Character.toLowerCase(oneChar)) {
+				return c;
+			}
+		}
+		return null;
+	}
+	
 	public String toString() {
 		String toReturn = "\n+------------------------------------------------+";
 		toReturn += "\n|  " + CONTROLLER.gameTitle + " controls:\n|";

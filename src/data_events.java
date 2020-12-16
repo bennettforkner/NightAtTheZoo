@@ -39,7 +39,7 @@ public class data_events {
 			new Response("No! I hate Timmy and I refuse to take him", 2)
 		}));
 		talkWithMom.conversations.add(1,new ConversationNode("Great! Enjoy your time together.", null,() -> {
-			CONTROLLER.GAME.setCurrentLocation(1);
+			CONTROLLER.GAME.controls.getControl('g').run("1");
 		}));
 		talkWithMom.conversations.add(2,new ConversationNode("It's just not an option for you to stay home honey.\nTimmy is really excited to see the hippos!\nAlso, you haven't done anything together in a long time.", new Response[] {
 			new Response("Ok, fine. I'll take him.", 1)
@@ -73,7 +73,7 @@ public class data_events {
 		ConversationEvent talkWithTimmyHome2 = new ConversationEvent(
 				"Talk With Timmy at Home 2",
 				CONTROLLER.GAME.creatures.timmy,
-				"Timmy looks like he is about to burst with excitement."
+				"Timmy is so excited to go to the zoo."
 			);
 			
 		talkWithTimmyHome2.conversations.add(0,new ConversationNode(CONTROLLER.player.getName() + ", I'm so glad you're my brother.\nYou're never selfish and always take me to the zoo when I want!", new Response[] {
@@ -94,7 +94,7 @@ public class data_events {
 				"Your mom turns to you..."
 			);
 			temp.conversations.add(0,new ConversationNode(CONTROLLER.player.getName() + ", did I just hear what I think I heard?", new Response[] {
-				new Response("No! I didnt say that. I was just frustrated with him. He always gets what he wants.", 1),
+				new Response("No! I didn't say that. I was just frustrated with him. He always gets what he wants.", 1),
 				new Response("Yes, he's being a little weasel and I am tired of it.", 4)
 			}));
 			temp.conversations.add(1,new ConversationNode("Well, you need to take your brother to the zoo.\nHe hasn't been in a while and you need to spend some time together.", new Response[] {
@@ -102,13 +102,13 @@ public class data_events {
 				new Response("Okay whatever, I'll take him.", 2)
 			}));
 			temp.conversations.add(2,new ConversationNode("Great! Enjoy your time together.", null,() -> {
-				CONTROLLER.GAME.setCurrentLocation(1);
+				CONTROLLER.GAME.controls.getControl('g').run("1");
 			}));
 			temp.conversations.add(3,new ConversationNode("You're taking him and that's final. Now grab your coat.", null,() -> {
-				CONTROLLER.GAME.setCurrentLocation(1);
+				CONTROLLER.GAME.controls.getControl('g').run("1");
 			}));
 			temp.conversations.add(4,new ConversationNode("How dare you say that to your brother.\nYou need some time together so that you can make up.\nNow you're definitely taking him to the zoo. Have fun boys!.", null,() -> {
-				CONTROLLER.GAME.setCurrentLocation(1);
+				CONTROLLER.GAME.controls.getControl('g').run("1");
 			}));
 			temp.doEvent();
 	}));

@@ -6,18 +6,32 @@ public class Location {
 	
 	private ArrayList<Item> items;
 	
-	private int[] accessibleLocations;
+	private int[] accessibleLocationInts;
+	
+	private ArrayList<Location> accessibleLocations;
 	
 	private ArrayList<InteractionEvent> interactions;
 	
 	private ArrayList<Creature> creatures;
 	
-	public Location(String locationName,int[] accessibleLocations) {
+	public Location(String locationName,int[] accessibleLocationInts) {
 		setLocationName(locationName);
 		this.items = new ArrayList<Item>();
 		this.interactions = new ArrayList<InteractionEvent>();
 		this.creatures = new ArrayList<Creature>();
-		this.accessibleLocations = accessibleLocations;
+		this.accessibleLocationInts = accessibleLocationInts;
+		this.accessibleLocations = new ArrayList<Location>();
+	}
+	
+	public void connectLocations() {
+		for (int i : accessibleLocationInts) {
+			this.addLocation(CONTROLLER.GAME.getLocations().get(i));
+		}
+	}
+
+	private void addLocation(Location location) {
+		accessibleLocations.add(location);
+		
 	}
 
 	/**
@@ -58,7 +72,7 @@ public class Location {
 	/**
 	 * @return the accessibleLocations
 	 */
-	public int[] getAccessibleLocations() {
+	public ArrayList<Location> getAccessibleLocations() {
 		return this.accessibleLocations;
 	}
 

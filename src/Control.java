@@ -6,16 +6,16 @@ public class Control {
 	
 	public char oneChar;
 	
-	private Runnable functionality;
+	private Runner functionality;
 	
-	public Control(String controlName,String desc,char oneChar,Runnable functionality) {
+	public Control(String controlName,String desc,char oneChar,Runner functionality) {
 		this.controlName = controlName;
 		this.desc = desc;
 		this.oneChar = oneChar;
 		this.functionality = functionality;
 	}
 	
-	public void run() {
-		this.functionality.run();
+	public void run(String arg) {
+		this.functionality.run(arg);
 	}
 }
