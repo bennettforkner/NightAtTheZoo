@@ -102,7 +102,7 @@ public class data_events {
 				new Response("Okay whatever, I'll take him.", 2)
 			}));
 			temp.conversations.add(2,new ConversationNode("Great! Enjoy your time together.", null,() -> {
-				CONTROLLER.GAME.controls.getControl('g').run("1");
+				CONTROLLER.GAME.setCurrentLocation(CONTROLLER.GAME.getLocations().get(1));;
 			}));
 			temp.conversations.add(3,new ConversationNode("You're taking him and that's final. Now grab your coat.", null,() -> {
 				CONTROLLER.GAME.controls.getControl('g').run("1");
