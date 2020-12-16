@@ -19,6 +19,10 @@ public class Controls {
 		controls.add(c);
 	}
 	
+	public void removeControl(Control c) {
+		controls.remove(c);
+	}
+	
 	public Control getControl(String controlName) {
 		for (Control c : controls) {
 			if (c.controlName.compareToIgnoreCase(controlName) == 0 ) {
@@ -39,10 +43,18 @@ public class Controls {
 	
 	public String toString() {
 		String toReturn = "\n+------------------------------------------------+";
+		toReturn += "\n|";
 		toReturn += "\n|  " + CONTROLLER.gameTitle + " controls:\n|";
 		for (Control c : controls) {
-			toReturn += "\n|  " + c.controlName + "\t[" + c.oneChar + "]: " + c.desc;
+			if (c.isAvailable()) {
+				if (c.controlName.length() > 4) {
+					toReturn += "\n|  " + c.controlName + "\t[" + c.oneChar + "]: " + c.desc;
+				} else {
+					toReturn += "\n|  " + c.controlName + "\t\t[" + c.oneChar + "]: " + c.desc;
+				}
+			}
 		}
+		toReturn += "\n|";
 		toReturn += "\n+------------------------------------------------+";
 		return toReturn;
 	}

@@ -23,7 +23,7 @@ public class Game {
 		String catchPhrase = in.nextLine();
 		CONTROLLER.player = new Player(name, 5, 1, catchPhrase,0);
 		ArrayList<Control> controls = new ArrayList<Control>();
-		controls.add(new Control("GO", "move from one location to another.", 'g',new Runner() {
+		controls.add(new Control("GO", "move from one location to another.", 'g', false, new Runner() {
 			public void run(String arg) {
 				if (arg == null || Integer.parseInt(arg) == 0) {
 					PRINTER.errorln("\nPlease enter a location to move to.");
@@ -37,14 +37,21 @@ public class Game {
 				}
 			}
 		}));
-		controls.add(new Control("HELP", "display this menu.", 'h', new Runner() {
+		controls.add(new HelpControl("HELP", "display this menu.", 'h', new Runner() {
 			public void run(String arg) {
-				PRINTER.narrate(CONTROLLER.GAME.controls.toString());
+				PRINTER.narrateln(CONTROLLER.GAME.controls.toString());
 			}
 		}));
-		controls.add(new Control("SPEAK", "speak to a creature.", 's', new Runner() {
+		controls.add(new Control("SPEAK", "speak to a creature.", 's', true, new Runner() {
 			public void run(String arg) {
-				if (arg == null || Integer.parseInt(arg) == 0) {
+				try {
+					Integer.parseInt(arg);
+				} catch (Exception e) {
+					PRINTER.errorln("\nPlease enter a creature to speak to.");
+					return;
+				}
+				
+				if (arg == null) {
 					PRINTER.errorln("\nPlease enter a creature to speak to.");
 					return;
 				}
@@ -133,9 +140,9 @@ public class Game {
 			Scanner in = new Scanner(System.in);
 			String[] arguments = in.nextLine().split(" ");
 			Control control;
-			if (arguments[1].length() > 1) {
+			if (arguments[0].length() > 1) {
 				control = controls.getControl(arguments[0]);
-			} else if (arguments[1].length() == 1) {
+			} else if (arguments[0].length() == 1) {
 				control = controls.getControl(arguments[0].charAt(0));
 			} else {
 				PRINTER.errorln("Please enter a control.");
@@ -143,7 +150,8 @@ public class Game {
 			}
 			
 			if (control != null) {
-				control.run(arguments[1]);
+				if (arguments.length > 1) control.run(arguments[1]);
+				else control.run();
 					
 			} else {
 				PRINTER.errorln("Please enter a valid control.");

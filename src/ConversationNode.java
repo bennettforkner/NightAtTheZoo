@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class ConversationNode {
@@ -36,6 +39,9 @@ public class ConversationNode {
 		}
 		
 		if (responses != null) {
+			List<Response> aLResponses = Arrays.asList(this.responses);
+			Collections.shuffle(aLResponses);
+			this.responses = aLResponses.toArray(new Response[0]);
 			PRINTER.narrateln("\nYou can respond:");
 			int count = 0;
 			for (Response resp : responses) {
