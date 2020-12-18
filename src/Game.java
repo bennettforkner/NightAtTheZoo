@@ -96,6 +96,9 @@ public class Game {
 			}
 			validLocations = currentLocation.getAccessibleLocations();
 			int count = 0;
+			
+			PRINTER.displayLocations();
+			
 			for (Location index : validLocations) {
 				PRINTER.narrateln("[" + count++ + "]: " + index.getLocationName());
 			}
@@ -108,7 +111,7 @@ public class Game {
 			validInteractions = currentLocation.getLocationInteractions();
 			count = 0;
 			
-			PRINTER.displayLocations();
+			PRINTER.displayActions();
 			
 			for (InteractionEvent interaction : validInteractions) {
 				PRINTER.narrateln("[" + count++ + "]: " + interaction.getTitle());

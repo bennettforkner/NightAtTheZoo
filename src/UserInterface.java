@@ -36,6 +36,7 @@ public class UserInterface {
 	private ButtonGroup creatureChoice = new ButtonGroup();
 	private JPanel creatureBlock = new JPanel();
 	private JPanel locationBlock = new JPanel();
+	private JPanel actionBlock = new JPanel();
 	
 	public UserInterface() {
 		window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -47,28 +48,9 @@ public class UserInterface {
         
         contentPane.setLayout(new BorderLayout());
         
-        JPanel bottom = new JPanel();
-        bottom.setLayout(new GridLayout(2, 1));
+        JPanel center = new JPanel();
+        center.setLayout(new GridLayout(3, 1));
         
-        JPanel radioButtons = new JPanel();
-        radioButtons.setLayout(new GridLayout(1, 2));
-        
-        creatureBlock.setOpaque(true);
-        creatureBlock.setVisible(true);
-        creatureBlock.setSize(new Dimension(900, 900));
-        radioButtons.add(locationBlock);
-        
-        locationBlock.setOpaque(true);
-        locationBlock.setVisible(true);
-        locationBlock.setSize(new Dimension(900, 900));
-        radioButtons.add(creatureBlock);
-        
-        bottom.add(radioButtons);
-        
-        buttons.setOpaque(true);
-        buttons.setVisible(true);
-        buttons.setSize(new Dimension(900, 900));
-        bottom.add(buttons);
         
         screenPanel.setLayout(new GridLayout(1, 1));
         //screenPanel.setBorder(BorderFactory.createBevelBorder(1));
@@ -83,12 +65,38 @@ public class UserInterface {
         screenPanel.setMaximumSize(new Dimension(900, 900));
         screenPanel.setMinimumSize(new Dimension(900, 900));
         screenPanel.setSize(new Dimension(900, 900));
-        JPanel top = new JPanel();
-        top.add(screenPanel);
-        top.setSize(new Dimension(900, 900));
+        center.add(screenPanel);
+        center.setSize(new Dimension(900, 900));
         
-        contentPane.add(bottom,BorderLayout.CENTER);
-        contentPane.add(top,BorderLayout.NORTH);
+        
+        JPanel radioButtons = new JPanel();
+        radioButtons.setLayout(new GridLayout(1, 3));
+        
+        creatureBlock.setOpaque(true);
+        creatureBlock.setVisible(true);
+        creatureBlock.setSize(new Dimension(900, 900));
+        radioButtons.add(locationBlock);
+        
+        locationBlock.setOpaque(true);
+        locationBlock.setVisible(true);
+        locationBlock.setSize(new Dimension(900, 900));
+        radioButtons.add(creatureBlock);
+        
+        actionBlock.setOpaque(true);
+        actionBlock.setVisible(true);
+        actionBlock.setSize(new Dimension(900, 900));
+        radioButtons.add(actionBlock);
+        
+        center.add(radioButtons);
+        
+        buttons.setOpaque(true);
+        buttons.setVisible(true);
+        buttons.setSize(new Dimension(900, 900));
+        center.add(buttons);
+        
+        
+        
+        contentPane.add(center,BorderLayout.CENTER);
         
 		window.setVisible(true);
 	}
@@ -139,6 +147,26 @@ public class UserInterface {
 		
 	}
 	
+	public void displayActionChoice(ArrayList<InteractionEvent> actions) {
+		clearActions();
+		locationBlock.setLayout(new GridLayout(actions.size(),1));
+		for (InteractionEvent a : actions) {
+			System.out.println(a.getTitle());
+			JRadioButton choice = new JRadioButton(a.getTitle());
+			choice.setFont(new Font("Foop", 20, 20));
+			choice.addActionListener(new ActionChoiceListener(a));
+        	choice.setVisible(true);
+        	choice.setOpaque(true);
+        	actionBlock.add(choice);
+		}
+		
+	}
+	
+	private void clearActions() {
+		this.actionBlock.removeAll();
+		
+	}
+
 	public void clearButtons() {
 		this.buttons.removeAll();
 	}

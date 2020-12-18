@@ -102,6 +102,9 @@ public class PRINTER {
 
 	public static void displayLocations() {
 		ui.displayLocationChoice(CONTROLLER.GAME.getCurrentLocation().getAccessibleLocations());
-		
+	}
+	
+	public static void displayActions() {
+		ui.displayActionChoice(CONTROLLER.GAME.getCurrentLocation().getLocationInteractions());
 	}
 }
