@@ -74,7 +74,7 @@ public class Game {
 	}
 	
 	public void playPreGame() {
-		currentLocation = locations.get(0);
+		currentLocation = locations.get(1);
 		PRINTER.narrateln("\nYou started the game.");
 			
 		PRINTER.narrateln("\n" + controls.toString());

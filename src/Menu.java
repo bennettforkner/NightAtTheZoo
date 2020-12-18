@@ -5,7 +5,7 @@ public class Menu {
 		UserInterface ui = new UserInterface();
 		PRINTER.setUI(ui);
 		
-		ui.setScreenText("Welcome to the game game.");
+		ui.setScreenText("Welcome to Night at the Zoo.");
 		
 		if (System.console() == null) System.setProperty("jansi.passthrough", "true");
 		if (System.getProperty("os.name").substring(0,6).compareToIgnoreCase("mac os") == 0) {
