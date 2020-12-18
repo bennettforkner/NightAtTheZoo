@@ -123,7 +123,8 @@ public class UserInterface {
 
 	public void displayLocationChoice(ArrayList<Location> locations) {
 		clearLocations();
-		locationBlock.setLayout(new GridLayout(locations.size(),1));
+		locationBlock.setLayout(new GridLayout(locations.size(),0));
+		System.out.println(locations.size());
 		for (Location l : locations) {
 			JButton choice = new JButton(l.getLocationName());
 			choice.setFont(new Font("Foop", 20, 20));
