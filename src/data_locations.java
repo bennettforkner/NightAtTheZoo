@@ -15,6 +15,7 @@ public class data_locations {
 		
 		locations.add(new Location("the hippo exhibit",new int[] {4,9}));
 		locations.get("the hippo exhibit").addLocationEvent((InteractionEvent)data_events.getEvent("Watch the Hippos"));
+		locations.get("the hippo exhibit").addLocationEvent((InteractionEvent)data_events.getEvent("Take a Selfie2"));
 		
 		locations.add(new Location("the penguin exhibit",new int[] {9}));
 		

@@ -87,17 +87,17 @@ public class UserInterface {
         creatureBlock.setOpaque(true);
         creatureBlock.setVisible(true);
         creatureBlock.setSize(new Dimension(900, 900));
-        radioButtons.add(locationBlock);
         
         locationBlock.setOpaque(true);
         locationBlock.setVisible(true);
         locationBlock.setSize(new Dimension(900, 900));
-        radioButtons.add(creatureBlock);
         
         actionBlock.setOpaque(true);
         actionBlock.setVisible(true);
         actionBlock.setSize(new Dimension(900, 900));
+        radioButtons.add(locationBlock);
         radioButtons.add(actionBlock);
+        radioButtons.add(creatureBlock);
         
         center.add(radioButtons);
         
@@ -153,7 +153,7 @@ public class UserInterface {
 	
 	public void displayActionChoice(ArrayList<InteractionEvent> actions) {
 		clearActions();
-		locationBlock.setLayout(new GridLayout(actions.size(),1));
+		actionBlock.setLayout(new GridLayout(actions.size(),1));
 		for (InteractionEvent a : actions) {
 			JButton choice = new JButton(a.getTitle());
 			choice.setFont(new Font("Foop", 20, 20));

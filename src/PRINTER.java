@@ -57,10 +57,14 @@ public class PRINTER {
 	
 	public static void say(String in,Creature c) {
 		System.out.print(YELLOW + in.replace(RESET, YELLOW) + RESET);
+		ui.setScreenColor(new Color(255, 0, 0));
+		ui.setScreenText(in.replace("\n", "<br>"));
 	}
 	
 	public static void sayln(String in,Creature c) {
 		System.out.println(YELLOW + in.replace(RESET, YELLOW) + RESET);
+		ui.setScreenColor(new Color(255, 0, 0));
+		ui.setScreenText(in.replace("\n", "<br>"));
 	}
 	
 	public static void think(String in) {

@@ -20,7 +20,7 @@ public class Game {
 		Scanner in = new Scanner(System.in);
 		PRINTER.prompt("Enter your name: ");
 		String name = in.nextLine();
-		PRINTER.prompt("\nEnter your catch phrase: ");
+		PRINTER.prompt("Enter your catch phrase: ");
 		String catchPhrase = in.nextLine();
 		CONTROLLER.player = new Player(name, 5, 1, catchPhrase,0);
 		ArrayList<Control> controls = new ArrayList<Control>();
@@ -68,9 +68,12 @@ public class Game {
 	public void setCurrentLocation(Location location) {
 		currentLocation = location;
 		PRINTER.setCurrentLocation(location);
-		PRINTER.displayLocations();
-		PRINTER.displayCreatures();
-		PRINTER.displayActions();
+		if (currentLocation.getAccessibleLocations().size() > 0)
+			PRINTER.displayLocations();
+		if (currentLocation.getLocationCreatures().size() > 0)
+			PRINTER.displayCreatures();
+		if (currentLocation.getLocationInteractions().size() > 0)
+			PRINTER.displayActions();
 	}
 	
 	public Location getCurrentLocation() {
@@ -79,7 +82,7 @@ public class Game {
 	
 	public void playPreGame() {
 		setCurrentLocation(locations.get(1));
-		PRINTER.narrateln("\nYou started the game.");
+		PRINTER.narrateln("You started the game.");
 		PRINTER.displayControls();
 		//PRINTER.narrateln("\n" + controls.toString());
 		while(true) {
@@ -133,7 +136,7 @@ public class Game {
 			
 			CONTROLLER.sleep(1000);
 			
-			PRINTER.promptln("\nWhat would you like to do?: ");
+			PRINTER.promptln("What would you like to do?: ");
 			
 			String[] arguments = PRINTER.readLine().split(" ");;
 			/*

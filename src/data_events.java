@@ -146,6 +146,29 @@ public class data_events {
 			CONTROLLER.sleep(1000);
 		}));
 		
+		events.add(new InteractionEvent("Take a Selfie2",() -> {
+			CONTROLLER.sleep(1000);
+			PRINTER.narrateln("\n** Click **");
+			
+			CONTROLLER.sleep(1000);
+			
+			PRINTER.narrateln(" ___________________");
+			PRINTER.narrateln("|                   |");
+			PRINTER.narrateln("|                   |");
+			PRINTER.narrateln("|    O              |");
+			PRINTER.narrateln("|   /|\\             |");
+			PRINTER.narrateln("|  / | \\      O     |");
+			PRINTER.narrateln("|    ?       /|\\    |");
+			PRINTER.narrateln("|   / \\       |     |");
+			PRINTER.narrateln("|  /   \\     / \\    |");
+			PRINTER.narrateln("|___________________|");
+			
+			CONTROLLER.sleep(2000);
+			
+			CONTROLLER.player.increaseStrength();
+			CONTROLLER.sleep(1000);
+		}));
+		
 		
 		//###################################> Watch the Hippos <##################################################
 		
@@ -175,15 +198,15 @@ public class data_events {
 				PRINTER.sayln("!",CONTROLLER.player);
 				CONTROLLER.sleep(1000);
 				
-				PRINTER.narrateln("\nTimmy fell into the hippo exhibit");
+				PRINTER.narrateln("Timmy fell into the hippo exhibit");
 				CONTROLLER.GAME.preGameRunning = false;
 				return;
 			} else {
 				CONTROLLER.sleep(1000);
-				PRINTER.narrateln("\nYou watch the hippos.");
+				PRINTER.narrateln("You watch the hippos.");
 				
 				CONTROLLER.sleep(2000);
-				PRINTER.narrateln("\nThey watch you back...");
+				PRINTER.narrateln("They watch you back...");
 				
 				CONTROLLER.sleep(1000);
 			}
@@ -194,7 +217,7 @@ public class data_events {
 		
 		events.add(new InteractionEvent("Feed the Turtles",() -> {
 			CONTROLLER.sleep(1000);
-			PRINTER.narrateln("\nYou decided to feed the turtles.");
+			PRINTER.narrateln("You decided to feed the turtles.");
 			
 			CONTROLLER.player.increaseStrength();
 			CONTROLLER.sleep(1000);
@@ -209,16 +232,16 @@ public class data_events {
 			foods.add(new FoodItem(1,"French Fried",6));
 			foods.add(new FoodItem(2,"Chicken Nugger",10));
 			foods.add(new FoodItem(2,"Shake",8));
-			PRINTER.narrateln("\nWelcome to the food court!");
+			PRINTER.narrateln("Welcome to the food court!");
 			String input = "";
 			Scanner in = new Scanner(System.in);
 			while (input.compareToIgnoreCase("q") != 0) {
-				PRINTER.narrateln("\nHere is what we have available:");
+				PRINTER.narrateln("Here is what we have available:");
 				int count = 0;
 				for (FoodItem f : foods) {
 					PRINTER.narrateln("[" + count++ + "]: " + f.getName() + " ($" + f.getPrice() + ")");
 				}
-				PRINTER.narrateln("\nWhat would you like to buy?: ");
+				PRINTER.narrateln("What would you like to buy?: ");
 				input = in.nextLine();
 				
 				if (input.length() < 3) {
@@ -237,21 +260,21 @@ public class data_events {
 		
 		events.add(new InteractionEvent("Mock the Flamingos",5,() -> {
 			CONTROLLER.sleep(1000);
-			PRINTER.narrateln("\nYou lift one foot off the ground.");
+			PRINTER.narrateln("You lift one foot off the ground.");
 			
 			CONTROLLER.sleep(1000);
-			PRINTER.narrateln("\nYou extend your neck.");
+			PRINTER.narrateln("You extend your neck.");
 			
 			CONTROLLER.sleep(1000);
-			PRINTER.narrateln("\nYou retract your arms.");
+			PRINTER.narrateln("You retract your arms.");
 			
 			CONTROLLER.sleep(5000);
 			int rando = (int)(Math.random() * 5);
 			if (rando == 0) {
-				PRINTER.narrateln("\nThe flamingos honk their disapproval.");
+				PRINTER.narrateln("The flamingos honk their disapproval.");
 				CONTROLLER.player.increaseStrength(4);
 			} else {
-				PRINTER.narrateln("\nThe flamingos were not amused.");
+				PRINTER.narrateln("The flamingos were not amused.");
 			}
 			CONTROLLER.sleep(1000);
 		}));
@@ -261,13 +284,13 @@ public class data_events {
 		
 		events.add(new InteractionEvent("Buy a Toy Hippo for Timmy",() -> {
 			CONTROLLER.sleep(1000);
-			PRINTER.narrateln("\nYou buy the toy hippo for $30.");
+			PRINTER.narrateln("You buy the toy hippo for $30.");
 			
 			CONTROLLER.sleep(1000);
-			PRINTER.narrateln("\nYou eye the hippo suspiciously.");
+			PRINTER.narrateln("You eye the hippo suspiciously.");
 			
 			CONTROLLER.sleep(2000);
-			PRINTER.narrateln("\nIt eyes you back...");
+			PRINTER.narrateln("It eyes you back...");
 			
 			CONTROLLER.sleep(1000);
 			
