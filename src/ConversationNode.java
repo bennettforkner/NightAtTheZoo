@@ -50,8 +50,7 @@ public class ConversationNode {
 			PRINTER.prompt("\nWhat would you like to say?: ");
 			
 			@SuppressWarnings("resource")
-			Scanner in = new Scanner(System.in);
-			String choice = in.nextLine();
+			String choice = PRINTER.readLine();
 			
 			if (choice.compareTo("") == 0) {
 				return converse(subject);

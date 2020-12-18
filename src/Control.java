@@ -17,13 +17,9 @@ public class Control {
 		this.functionality = functionality;
 		this.available = available;
 	}
-	
-	public void run(String arg) {
-		this.functionality.run(arg);
-	}
 
 	public void run() {
-		this.functionality.run(null);
+		this.functionality.run();
 		
 	}
 

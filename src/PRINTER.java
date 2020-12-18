@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class PRINTER {
 	public static String RESET = "";
@@ -77,14 +78,30 @@ public class PRINTER {
 	public static void errorln(String in) {
 		System.err.println(in);
 	}
-
-	public static void setControls(String[] controlStringArr) {
-		String[] ctrls = new String[CONTROLLER.GAME.controls.getControls().size()];
-		for (int i = 0; i < CONTROLLER.GAME.controls.getControls().size(); i++) {
-			ctrls[i] = CONTROLLER.GAME.controls.getControls().get(i).controlName;
-			System.out.println(CONTROLLER.GAME.controls.getControls().get(i).controlName);
+	
+	public static String readLine() {
+		//Scanner in = new Scanner(System.in);
+		//return in.nextLine();
+		
+		CONTROLLER.WAIT = true;
+		
+		while (CONTROLLER.WAIT) {
+			CONTROLLER.sleep(500);
 		}
-		ui.displayButtons(ctrls);
+		return "";
+	}
+
+	public static void displayControls() {
+		ui.displayButtons(CONTROLLER.GAME.controls.getControls());
+		
+	}
+	
+	public static void displayCreatures() {
+		ui.displayCreatureChoice(CONTROLLER.GAME.getCurrentLocation().getLocationCreatures());
+	}
+
+	public static void displayLocations() {
+		ui.displayLocationChoice(CONTROLLER.GAME.getCurrentLocation().getAccessibleLocations());
 		
 	}
 }

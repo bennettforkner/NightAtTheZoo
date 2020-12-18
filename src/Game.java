@@ -24,48 +24,28 @@ public class Game {
 		CONTROLLER.player = new Player(name, 5, 1, catchPhrase,0);
 		ArrayList<Control> controls = new ArrayList<Control>();
 		controls.add(new Control("GO", "move from one location to another.", 'g', false, new Runner() {
-			public void run(String arg) {
-				try {
-					Integer.parseInt(arg);
-				} catch (Exception e) {
-					PRINTER.errorln("\nPlease enter a location to move to.");
-					return;
-				}
-				if (arg == null) {
-					PRINTER.errorln("\nPlease enter a location to move to.");
-					return;
-				}
-				ArrayList<Location> accessibleLocations = CONTROLLER.GAME.getCurrentLocation().getAccessibleLocations();
-				if (accessibleLocations.size() > Integer.parseInt(arg)) {
-					CONTROLLER.GAME.setCurrentLocation(accessibleLocations.get(Integer.parseInt(arg)));
-				} else {
-					PRINTER.errorln("\nYou are not allowed to go to that location.");
-				}
+			public void run() {
+				Location l = CONTROLLER.SELECTEDLOCATION;
+				if (l != null)
+					CONTROLLER.GAME.setCurrentLocation(l);
+				else
+					PRINTER.errorln("Please select a location.");
 			}
 		}));
 		controls.add(new HelpControl("HELP", "display this menu.", 'h', new Runner() {
-			public void run(String arg) {
+			public void run() {
 				PRINTER.narrateln(CONTROLLER.GAME.controls.toString());
 			}
 		}));
 		controls.add(new Control("SPEAK", "speak to a creature.", 's', true, new Runner() {
-			public void run(String arg) {
-				try {
-					Integer.parseInt(arg);
-				} catch (Exception e) {
-					PRINTER.errorln("\nPlease enter a creature to speak to.");
-					return;
-				}
+			public void run() {
 				
-				if (arg == null) {
-					PRINTER.errorln("\nPlease enter a creature to speak to.");
-					return;
-				}
+				Creature creature = CONTROLLER.SELECTEDCREATURE;
 				
-				if (CONTROLLER.GAME.getCurrentLocation().getLocationCreatures().size() > Integer.parseInt(arg)) {
-					CONTROLLER.GAME.getCurrentLocation().getLocationCreatures().get(Integer.parseInt(arg)).converse();;
+				if (creature != null) {
+					creature.converse();
 				} else {
-					PRINTER.errorln("\nThat creature does not exist.");
+					PRINTER.errorln("Please select a creature.");
 				}
 			}
 		}));
@@ -119,15 +99,20 @@ public class Game {
 				PRINTER.narrateln("[" + count++ + "]: " + index.getLocationName());
 			}
 			
+			
 			if (currentLocation.getLocationInteractions().size() > 0) {
 				CONTROLLER.sleep(1000);
 				PRINTER.narrateln("\nYou can do these actions:");
 			}
 			validInteractions = currentLocation.getLocationInteractions();
 			count = 0;
+			
+			PRINTER.displayLocations();
+			
 			for (InteractionEvent interaction : validInteractions) {
 				PRINTER.narrateln("[" + count++ + "]: " + interaction.getTitle());
 			}
+			
 			
 			if (currentLocation.getLocationCreatures().size() > 0) {
 				CONTROLLER.sleep(1000);
@@ -135,16 +120,19 @@ public class Game {
 			}
 			validCreatures = currentLocation.getLocationCreatures();
 			count = 0;
+			
+			PRINTER.displayCreatures();
+			
 			for (Creature creature : validCreatures) {
 				PRINTER.narrateln("[" + count++ + "]: " + creature.getName());
 			}
 			
 			CONTROLLER.sleep(1000);
 			
-			PRINTER.prompt("\nWhat would you like to do?: ");
+			PRINTER.promptln("\nWhat would you like to do?: ");
 			
-			Scanner in = new Scanner(System.in);
-			String[] arguments = in.nextLine().split(" ");
+			String[] arguments = PRINTER.readLine().split(" ");;
+			/*
 			Control control;
 			if (arguments[0].length() > 1) {
 				control = controls.getControl(arguments[0]);
@@ -162,6 +150,7 @@ public class Game {
 			} else {
 				PRINTER.errorln("Please enter a valid control.");
 			}
+			*/
 			
 			/*if (choice.compareTo("") == 0) {
 				continue;

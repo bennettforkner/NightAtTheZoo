@@ -60,7 +60,7 @@ public class Controls {
 		toReturn += "\n|";
 		toReturn += "\n+------------------------------------------------+";
 		
-		PRINTER.setControls(controlStringArr);
+		PRINTER.displayControls();
 		return toReturn;
 	}
 	
