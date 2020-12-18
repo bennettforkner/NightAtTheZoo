@@ -14,6 +14,7 @@ public class ButtonListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		event.run();
 		CONTROLLER.WAIT = false;
+		//PRINTER.clearButtonColors();
 	}
 
 }

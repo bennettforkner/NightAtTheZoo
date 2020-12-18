@@ -68,6 +68,9 @@ public class Game {
 	public void setCurrentLocation(Location location) {
 		currentLocation = location;
 		PRINTER.setCurrentLocation(location);
+		PRINTER.displayLocations();
+		PRINTER.displayCreatures();
+		PRINTER.displayActions();
 	}
 	
 	public Location getCurrentLocation() {
@@ -97,8 +100,6 @@ public class Game {
 			}*/
 			validLocations = currentLocation.getAccessibleLocations();
 			int count = 0;
-			
-			PRINTER.displayLocations();
 			/*
 			for (Location index : validLocations) {
 				PRINTER.narrateln("[" + count++ + "]: " + index.getLocationName());
@@ -112,7 +113,6 @@ public class Game {
 			validInteractions = currentLocation.getLocationInteractions();
 			count = 0;
 			
-			PRINTER.displayActions();
 			/*
 			for (InteractionEvent interaction : validInteractions) {
 				PRINTER.narrateln("[" + count++ + "]: " + interaction.getTitle());
@@ -126,7 +126,6 @@ public class Game {
 			validCreatures = currentLocation.getLocationCreatures();
 			count = 0;
 			
-			PRINTER.displayCreatures();
 			/*
 			for (Creature creature : validCreatures) {
 				PRINTER.narrateln("[" + count++ + "]: " + creature.getName());

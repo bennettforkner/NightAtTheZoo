@@ -45,13 +45,13 @@ public class PRINTER {
 	
 	public static void narrate(String in) {
 		System.out.print(CYAN + in.replace(RESET, CYAN) + RESET);
-		ui.setScreenColor(new Color(255, 0, 0));
+		ui.setScreenColor(new Color(0, 0, 0));
 		ui.setScreenText(in.replace("\n", "<br>"));
 	}
 	
 	public static void narrateln(String in) {
 		System.out.println(CYAN + in.replace(RESET, CYAN) + RESET);
-		ui.setScreenColor(new Color(255, 0, 0));
+		ui.setScreenColor(new Color(0, 0, 0));
 		ui.setScreenText(in.replace("\n", "<br>"));
 	}
 	
@@ -110,5 +110,9 @@ public class PRINTER {
 	
 	public static void setCurrentLocation(Location l) {
 		ui.setCurrentLocation(l);
+	}
+
+	public static void clearButtonColors() {
+		ui.clearButtonColoring();
 	}
 }
