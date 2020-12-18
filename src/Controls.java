@@ -42,11 +42,14 @@ public class Controls {
 	}
 	
 	public String toString() {
+		String[] controlStringArr = new String[controls.size()];
 		String toReturn = "\n+------------------------------------------------+";
 		toReturn += "\n|";
 		toReturn += "\n|  " + CONTROLLER.gameTitle + " controls:\n|";
+		int count = 0;
 		for (Control c : controls) {
 			if (c.isAvailable()) {
+				controlStringArr[count++] = c.controlName;
 				if (c.controlName.length() > 4) {
 					toReturn += "\n|  " + c.controlName + "\t[" + c.oneChar + "]: " + c.desc;
 				} else {
@@ -56,6 +59,8 @@ public class Controls {
 		}
 		toReturn += "\n|";
 		toReturn += "\n+------------------------------------------------+";
+		
+		PRINTER.setControls(controlStringArr);
 		return toReturn;
 	}
 	

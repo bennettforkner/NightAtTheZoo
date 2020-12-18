@@ -25,12 +25,18 @@ public class Game {
 		ArrayList<Control> controls = new ArrayList<Control>();
 		controls.add(new Control("GO", "move from one location to another.", 'g', false, new Runner() {
 			public void run(String arg) {
-				if (arg == null || Integer.parseInt(arg) == 0) {
+				try {
+					Integer.parseInt(arg);
+				} catch (Exception e) {
+					PRINTER.errorln("\nPlease enter a location to move to.");
+					return;
+				}
+				if (arg == null) {
 					PRINTER.errorln("\nPlease enter a location to move to.");
 					return;
 				}
 				ArrayList<Location> accessibleLocations = CONTROLLER.GAME.getCurrentLocation().getAccessibleLocations();
-				if (accessibleLocations.contains(Integer.parseInt(arg))) {
+				if (accessibleLocations.size() > Integer.parseInt(arg)) {
 					CONTROLLER.GAME.setCurrentLocation(accessibleLocations.get(Integer.parseInt(arg)));
 				} else {
 					PRINTER.errorln("\nYou are not allowed to go to that location.");
@@ -110,7 +116,7 @@ public class Game {
 			validLocations = currentLocation.getAccessibleLocations();
 			int count = 0;
 			for (Location index : validLocations) {
-				PRINTER.narrateln("[" + count + "]: " + index.getLocationName());
+				PRINTER.narrateln("[" + count++ + "]: " + index.getLocationName());
 			}
 			
 			if (currentLocation.getLocationInteractions().size() > 0) {

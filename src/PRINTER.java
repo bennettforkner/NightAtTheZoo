@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class PRINTER {
@@ -11,6 +12,8 @@ public class PRINTER {
 	public static String CYAN = "";
 	public static String WHITE = "";
 	
+	private static UserInterface ui;
+	
 	public static void initMAC() {
 		RESET = "\u001B[0m";
 		BLACK = "\u001B[30m";
@@ -21,6 +24,10 @@ public class PRINTER {
 		PURPLE = "\u001B[35m";
 		CYAN = "\u001B[36m";
 		WHITE = "\u001B[37m";
+	}
+	
+	public static void setUI(UserInterface userint) {
+		ui = userint;
 	}
 	
 	public static void initWIN10() {
@@ -37,10 +44,14 @@ public class PRINTER {
 	
 	public static void narrate(String in) {
 		System.out.print(CYAN + in.replace(RESET, CYAN) + RESET);
+		ui.setScreenColor(new Color(255, 0, 0));
+		ui.setScreenText(in.replace("\n", "<br>"));
 	}
 	
 	public static void narrateln(String in) {
 		System.out.println(CYAN + in.replace(RESET, CYAN) + RESET);
+		ui.setScreenColor(new Color(255, 0, 0));
+		ui.setScreenText(in.replace("\n", "<br>"));
 	}
 	
 	public static void say(String in,Creature c) {
@@ -65,5 +76,15 @@ public class PRINTER {
 	
 	public static void errorln(String in) {
 		System.err.println(in);
+	}
+
+	public static void setControls(String[] controlStringArr) {
+		String[] ctrls = new String[CONTROLLER.GAME.controls.getControls().size()];
+		for (int i = 0; i < CONTROLLER.GAME.controls.getControls().size(); i++) {
+			ctrls[i] = CONTROLLER.GAME.controls.getControls().get(i).controlName;
+			System.out.println(CONTROLLER.GAME.controls.getControls().get(i).controlName);
+		}
+		ui.displayButtons(ctrls);
+		
 	}
 }

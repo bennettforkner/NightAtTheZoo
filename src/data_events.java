@@ -39,6 +39,7 @@ public class data_events {
 			new Response("No! I hate Timmy and I refuse to take him", 2)
 		}));
 		talkWithMom.conversations.add(1,new ConversationNode("Great! Enjoy your time together.", null,() -> {
+			CONTROLLER.GAME.controls.getControl('g').setAvailable(true);
 			CONTROLLER.GAME.setCurrentLocation(CONTROLLER.GAME.getLocations().get(1));
 		}));
 		talkWithMom.conversations.add(2,new ConversationNode("It's just not an option for you to stay home honey.\nTimmy is really excited to see the hippos!\nAlso, you haven't done anything together in a long time.", new Response[] {
@@ -102,12 +103,15 @@ public class data_events {
 				new Response("Okay whatever, I'll take him.", 2)
 			}));
 			temp.conversations.add(2,new ConversationNode("Great! Enjoy your time together.", null,() -> {
+				CONTROLLER.GAME.controls.getControl('g').setAvailable(true);
 				CONTROLLER.GAME.setCurrentLocation(CONTROLLER.GAME.getLocations().get(1));
 			}));
 			temp.conversations.add(3,new ConversationNode("You're taking him and that's final. Now grab your coat.", null,() -> {
+				CONTROLLER.GAME.controls.getControl('g').setAvailable(true);
 				CONTROLLER.GAME.setCurrentLocation(CONTROLLER.GAME.getLocations().get(1));
 			}));
 			temp.conversations.add(4,new ConversationNode("How dare you say that to your brother.\nYou need some time together so that you can make up.\nNow you're definitely taking him to the zoo. Have fun boys!.", null,() -> {
+				CONTROLLER.GAME.controls.getControl('g').setAvailable(true);
 				CONTROLLER.GAME.setCurrentLocation(CONTROLLER.GAME.getLocations().get(1));
 			}));
 			temp.doEvent();

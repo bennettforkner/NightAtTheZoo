@@ -59,6 +59,9 @@ public class ConversationNode {
 				int index = Integer.parseInt(choice.replaceAll("[\\D]", ""));
 				endLogic.run();
 				return responses[index].getNextNode();
+			} else if (choice.charAt(0) == 'h') {
+				CONTROLLER.GAME.controls.getControl('h').run();
+				return converse(subject);
 			} else {
 				return converse(subject);
 			}

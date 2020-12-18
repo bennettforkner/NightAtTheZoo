@@ -1,6 +1,12 @@
 
 public class Menu {
 	public static void main(String[] args) {
+		
+		UserInterface ui = new UserInterface();
+		PRINTER.setUI(ui);
+		
+		ui.setScreenText("Welcome to the game game.");
+		
 		if (System.console() == null) System.setProperty("jansi.passthrough", "true");
 		if (System.getProperty("os.name").substring(0,6).compareToIgnoreCase("mac os") == 0) {
 			PRINTER.initMAC();
