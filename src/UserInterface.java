@@ -113,11 +113,12 @@ public class UserInterface {
 	}
 	
 	public void setScreenText(String text) {
-		screen.setText("<html><div style='padding:20px;'>" + text + "</div></html>");
+		screen.setText("<html><div style='padding:10px;'>" + text + "</div></html>");
 	}
 	
 	public void setCurrentLocation(Location location) {
-		this.currentLocation.setText("Current Location: " + location.getLocationName());
+		this.currentLocation.setText("<html><div style='padding:20px;text-align:center;background-color:#bbbbbb;'>Current Location: " + location.getLocationName() + "</div></html>");
+		System.out.println(currentLocation.getSize().width + " x " + currentLocation.getSize().height);
 	}
 	
 	public void displayButtons(ArrayList<Control> controls) {
@@ -138,9 +139,9 @@ public class UserInterface {
 		clearCreatures();
 		creatureBlock.setLayout(new GridLayout(creatures.size(),1));
 		for (Creature c : creatures) {
-			JRadioButton choice = new JRadioButton(c.getName());
+			JButton choice = new JButton(c.getName());
 			choice.setFont(new Font("Foop", 20, 20));
-			choice.addActionListener(new CreatureChoiceListener(c));
+			choice.addActionListener(new CreatureChoiceListener(c,choice));
         	choice.setVisible(true);
         	choice.setOpaque(true);
         	creatureChoice.add(choice);
@@ -152,10 +153,9 @@ public class UserInterface {
 		clearLocations();
 		locationBlock.setLayout(new GridLayout(locations.size(),1));
 		for (Location l : locations) {
-			System.out.println(l.getLocationName());
-			JRadioButton choice = new JRadioButton(l.getLocationName());
+			JButton choice = new JButton(l.getLocationName());
 			choice.setFont(new Font("Foop", 20, 20));
-			choice.addActionListener(new LocationChoiceListener(l));
+			choice.addActionListener(new LocationChoiceListener(l,choice));
         	choice.setVisible(true);
         	choice.setOpaque(true);
         	locationChoice.add(choice);
@@ -168,7 +168,6 @@ public class UserInterface {
 		clearActions();
 		locationBlock.setLayout(new GridLayout(actions.size(),1));
 		for (InteractionEvent a : actions) {
-			System.out.println(a.getTitle());
 			JButton choice = new JButton(a.getTitle());
 			choice.setFont(new Font("Foop", 20, 20));
 			choice.addActionListener(new ActionChoiceListener(a));

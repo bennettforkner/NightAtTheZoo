@@ -77,29 +77,29 @@ public class Game {
 	public void playPreGame() {
 		setCurrentLocation(locations.get(1));
 		PRINTER.narrateln("\nYou started the game.");
-			
-		PRINTER.narrateln("\n" + controls.toString());
+		PRINTER.displayControls();
+		//PRINTER.narrateln("\n" + controls.toString());
 		while(true) {
 			if (!preGameRunning) {
 				break;
 			}
 			try {Runtime.getRuntime().exec("cls");} catch (IOException e) {}
 			
-			PRINTER.narrateln("\nYou are currently at " + currentLocation.getLocationName());
+			//PRINTER.narrateln("\nYou are currently at " + currentLocation.getLocationName());
 			
 			validCreatures = null;
 			validInteractions = null;
 			validLocations = null;
-			
+			/*
 			if (currentLocation.getAccessibleLocations().size() > 0) {
 				CONTROLLER.sleep(1000);
 				PRINTER.narrateln("\nYou can go to these locations:");
-			}
+			}*/
 			validLocations = currentLocation.getAccessibleLocations();
 			int count = 0;
 			
 			PRINTER.displayLocations();
-			
+			/*
 			for (Location index : validLocations) {
 				PRINTER.narrateln("[" + count++ + "]: " + index.getLocationName());
 			}
@@ -108,12 +108,12 @@ public class Game {
 			if (currentLocation.getLocationInteractions().size() > 0) {
 				CONTROLLER.sleep(1000);
 				PRINTER.narrateln("\nYou can do these actions:");
-			}
+			}*/
 			validInteractions = currentLocation.getLocationInteractions();
 			count = 0;
 			
 			PRINTER.displayActions();
-			
+			/*
 			for (InteractionEvent interaction : validInteractions) {
 				PRINTER.narrateln("[" + count++ + "]: " + interaction.getTitle());
 			}
@@ -122,15 +122,15 @@ public class Game {
 			if (currentLocation.getLocationCreatures().size() > 0) {
 				CONTROLLER.sleep(1000);
 				PRINTER.narrateln("\nThese people are around you:");
-			}
+			}*/
 			validCreatures = currentLocation.getLocationCreatures();
 			count = 0;
 			
 			PRINTER.displayCreatures();
-			
+			/*
 			for (Creature creature : validCreatures) {
 				PRINTER.narrateln("[" + count++ + "]: " + creature.getName());
-			}
+			}*/
 			
 			CONTROLLER.sleep(1000);
 			
