@@ -56,12 +56,12 @@ public class UserInterface {
         creatureBlock.setOpaque(true);
         creatureBlock.setVisible(true);
         creatureBlock.setSize(new Dimension(900, 900));
-        radioButtons.add(creatureBlock);
+        radioButtons.add(locationBlock);
         
         locationBlock.setOpaque(true);
         locationBlock.setVisible(true);
         locationBlock.setSize(new Dimension(900, 900));
-        radioButtons.add(locationBlock);
+        radioButtons.add(creatureBlock);
         
         bottom.add(radioButtons);
         
@@ -112,6 +112,7 @@ public class UserInterface {
 	}
 	
 	public void displayCreatureChoice(ArrayList<Creature> creatures) {
+		clearCreatures();
 		creatureBlock.setLayout(new GridLayout(creatures.size(),1));
 		for (Creature c : creatures) {
 			JRadioButton choice = new JRadioButton(c.getName());
@@ -124,6 +125,7 @@ public class UserInterface {
 	}
 
 	public void displayLocationChoice(ArrayList<Location> locations) {
+		clearLocations();
 		locationBlock.setLayout(new GridLayout(locations.size(),1));
 		for (Location l : locations) {
 			System.out.println(l.getLocationName());
@@ -132,7 +134,7 @@ public class UserInterface {
 			choice.addActionListener(new LocationChoiceListener(l));
         	choice.setVisible(true);
         	choice.setOpaque(true);
-        	creatureBlock.add(choice);
+        	locationBlock.add(choice);
 		}
 		
 	}
@@ -145,12 +147,15 @@ public class UserInterface {
 		this.creatureBlock.removeAll();
 	}
 	
+	public void clearLocations() {
+		this.locationBlock.removeAll();
+	}
+	
 	public void setScreenColor(Color c) {
 		screen.setForeground(c);
 	}
 
 	public void close() {
 		this.window.dispose();
-		
 	}
 }
