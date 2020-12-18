@@ -107,4 +107,8 @@ public class PRINTER {
 	public static void displayActions() {
 		ui.displayActionChoice(CONTROLLER.GAME.getCurrentLocation().getLocationInteractions());
 	}
+	
+	public static void setCurrentLocation(Location l) {
+		ui.setCurrentLocation(l);
+	}
 }

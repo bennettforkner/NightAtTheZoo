@@ -34,9 +34,12 @@ public class UserInterface {
 	public JPanel screenPanel = new JPanel();
 	private Container contentPane = window.getContentPane();
 	private ButtonGroup creatureChoice = new ButtonGroup();
+	private ButtonGroup locationChoice = new ButtonGroup();
+	private ButtonGroup actionChoice = new ButtonGroup();
 	private JPanel creatureBlock = new JPanel();
 	private JPanel locationBlock = new JPanel();
 	private JPanel actionBlock = new JPanel();
+	private JLabel currentLocation = new JLabel();
 	
 	public UserInterface() {
 		window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -50,6 +53,14 @@ public class UserInterface {
         
         JPanel center = new JPanel();
         center.setLayout(new GridLayout(3, 1));
+        
+        JPanel top = new JPanel();
+        top.setLayout(new GridLayout(1, 1));
+        
+        currentLocation.setFont(new Font("Foop", 20, 25));
+        currentLocation.setOpaque(true);
+        currentLocation.setVisible(true);
+        top.add(currentLocation);
         
         
         screenPanel.setLayout(new GridLayout(1, 1));
@@ -95,7 +106,7 @@ public class UserInterface {
         center.add(buttons);
         
         
-        
+        contentPane.add(top,BorderLayout.NORTH);
         contentPane.add(center,BorderLayout.CENTER);
         
 		window.setVisible(true);
@@ -103,6 +114,10 @@ public class UserInterface {
 	
 	public void setScreenText(String text) {
 		screen.setText("<html><div style='padding:20px;'>" + text + "</div></html>");
+	}
+	
+	public void setCurrentLocation(Location location) {
+		this.currentLocation.setText("Current Location: " + location.getLocationName());
 	}
 	
 	public void displayButtons(ArrayList<Control> controls) {
@@ -128,6 +143,7 @@ public class UserInterface {
 			choice.addActionListener(new CreatureChoiceListener(c));
         	choice.setVisible(true);
         	choice.setOpaque(true);
+        	creatureChoice.add(choice);
         	creatureBlock.add(choice);
 		}
 	}
@@ -142,6 +158,7 @@ public class UserInterface {
 			choice.addActionListener(new LocationChoiceListener(l));
         	choice.setVisible(true);
         	choice.setOpaque(true);
+        	locationChoice.add(choice);
         	locationBlock.add(choice);
 		}
 		
@@ -152,11 +169,12 @@ public class UserInterface {
 		locationBlock.setLayout(new GridLayout(actions.size(),1));
 		for (InteractionEvent a : actions) {
 			System.out.println(a.getTitle());
-			JRadioButton choice = new JRadioButton(a.getTitle());
+			JButton choice = new JButton(a.getTitle());
 			choice.setFont(new Font("Foop", 20, 20));
 			choice.addActionListener(new ActionChoiceListener(a));
         	choice.setVisible(true);
         	choice.setOpaque(true);
+        	actionChoice.add(choice);
         	actionBlock.add(choice);
 		}
 		

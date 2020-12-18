@@ -67,6 +67,7 @@ public class Game {
 	
 	public void setCurrentLocation(Location location) {
 		currentLocation = location;
+		PRINTER.setCurrentLocation(location);
 	}
 	
 	public Location getCurrentLocation() {
@@ -74,7 +75,7 @@ public class Game {
 	}
 	
 	public void playPreGame() {
-		currentLocation = locations.get(1);
+		setCurrentLocation(locations.get(1));
 		PRINTER.narrateln("\nYou started the game.");
 			
 		PRINTER.narrateln("\n" + controls.toString());
