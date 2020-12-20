@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -17,6 +18,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.UIManager;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class UserInterface {
 	
@@ -68,7 +72,8 @@ public class UserInterface {
         //screenPanel.setBorder(BorderFactory.createBevelBorder(1));
         screen = new JLabel();
         screen.setFont(new Font("Foop", 20, 20));
-        screen.setBorder(BorderFactory.createLineBorder(new Color(0,0,0), 2,true));
+        screen.setForeground(Color.WHITE);
+        screen.setBorder(BorderFactory.createLineBorder(new Color(255,255,255), 2,true));
         //screen.setPreferredSize(new Dimension(900, 900));
         //screen.setLocation(0,0);
         
@@ -106,6 +111,13 @@ public class UserInterface {
         buttons.setSize(new Dimension(900, 900));
         center.add(buttons);
         
+        locationBlock.setBackground(Color.BLACK);
+        actionBlock.setBackground(Color.BLACK);
+        creatureBlock.setBackground(Color.BLACK);
+        buttons.setBackground(Color.BLACK);
+        screenPanel.setBackground(Color.BLACK);
+        currentLocation.setBackground(Color.BLACK);
+        
         
         contentPane.add(top,BorderLayout.NORTH);
         contentPane.add(center,BorderLayout.CENTER);
@@ -114,11 +126,11 @@ public class UserInterface {
 	}
 	
 	public void setScreenText(String text) {
-		screen.setText("<html><div style='padding:10px;'>" + text + "</div></html>");
+		screen.setText("<html><div style='padding:20px;'>" + text + "</div></html>");
 	}
 	
 	public void setCurrentLocation(Location location) {
-		this.currentLocation.setText("<html><div style='padding:20px;text-align:center;background-color:#bbbbbb;'>Current Location: " + location.getLocationName() + "</div></html>");
+		this.currentLocation.setText("<html><div style='padding:20px;text-align:center;color:white;'>Current Location: " + location.getLocationName() + "</div></html>");
 	}
 
 	public void displayLocationChoice(ArrayList<Location> locations) {
@@ -131,6 +143,30 @@ public class UserInterface {
 			choice.addActionListener(new LocationChoiceListener(l,choice));
         	choice.setVisible(true);
         	choice.setOpaque(true);
+        	choice.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        	
+        	choice.addMouseListener(new java.awt.event.MouseAdapter() {
+        	    public void mouseEntered(java.awt.event.MouseEvent evt) {
+        	        choice.setBackground(Color.BLACK);
+        	    }
+
+        	    public void mouseExited(java.awt.event.MouseEvent evt) {
+        	        choice.setBackground(UIManager.getColor("control"));
+        	    }
+        	});
+        	choice.addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent evt) {
+                    if (choice.getModel().isPressed()) {
+                    	choice.setBackground(Color.GREEN);
+                    } else if (choice.getModel().isRollover()) {
+                    	choice.setBackground(Color.PINK);
+                    } else {
+                    	choice.setBackground(UIManager.getColor("control"));
+                    }
+                }
+            });
+        	
         	locationChoice.add(choice);
         	locationBlock.add(choice);
 		}
@@ -146,6 +182,30 @@ public class UserInterface {
 			choice.addActionListener(new CreatureChoiceListener(c,choice));
         	choice.setVisible(true);
         	choice.setOpaque(true);
+        	choice.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        	
+        	choice.addMouseListener(new java.awt.event.MouseAdapter() {
+        	    public void mouseEntered(java.awt.event.MouseEvent evt) {
+        	    	choice.setBackground(Color.BLACK);
+        	    }
+
+        	    public void mouseExited(java.awt.event.MouseEvent evt) {
+        	        choice.setBackground(UIManager.getColor("control"));
+        	    }
+        	});
+        	choice.addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent evt) {
+                    if (choice.getModel().isPressed()) {
+                    	choice.setBackground(Color.GREEN);
+                    } else if (choice.getModel().isRollover()) {
+                    	choice.setBackground(Color.PINK);
+                    } else {
+                    	choice.setBackground(UIManager.getColor("control"));
+                    }
+                }
+            });
+        	
         	creatureChoice.add(choice);
         	creatureBlock.add(choice);
 		}
@@ -160,6 +220,30 @@ public class UserInterface {
 			choice.addActionListener(new ActionChoiceListener(a));
         	choice.setVisible(true);
         	choice.setOpaque(true);
+        	choice.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        	
+        	choice.addMouseListener(new java.awt.event.MouseAdapter() {
+        	    public void mouseEntered(java.awt.event.MouseEvent evt) {
+        	    	choice.setBackground(Color.BLACK);
+        	    }
+
+        	    public void mouseExited(java.awt.event.MouseEvent evt) {
+        	        choice.setBackground(UIManager.getColor("control"));
+        	    }
+        	});
+        	choice.addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent evt) {
+                    if (choice.getModel().isPressed()) {
+                    	choice.setBackground(Color.GREEN);
+                    } else if (choice.getModel().isRollover()) {
+                    	choice.setBackground(Color.PINK);
+                    } else {
+                    	choice.setBackground(UIManager.getColor("control"));
+                    }
+                }
+            });
+        	
         	actionChoice.add(choice);
         	actionBlock.add(choice);
 		}
@@ -175,6 +259,19 @@ public class UserInterface {
 	        	button.addActionListener(new ButtonListener(c));
 	        	button.setVisible(true);
 	        	button.setOpaque(true);
+	        	button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	        	
+	        	button.addMouseListener(new java.awt.event.MouseAdapter() {
+	        	    public void mouseEntered(java.awt.event.MouseEvent evt) {
+	        	    	button.setBackground(Color.BLACK);
+	        	    }
+
+	        	    public void mouseExited(java.awt.event.MouseEvent evt) {
+	        	    	button.setBackground(UIManager.getColor("control"));
+	        	    }
+	        	});
+	        	
+	        	
 	        	buttons.add(button);
 	        	buttonMap.put(c.controlName,button);
         }

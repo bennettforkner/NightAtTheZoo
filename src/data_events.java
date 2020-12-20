@@ -7,6 +7,7 @@ public class data_events {
 	
 	public static void init() {
 		events = new ArrayList<GameEvent>();
+		UserInterface ui = PRINTER.getUI();
 		
 		/* Events list:
 		 * 
@@ -125,30 +126,7 @@ public class data_events {
 		
 		events.add(new InteractionEvent("Take a Selfie",() -> {
 			CONTROLLER.sleep(1000);
-			PRINTER.narrateln("\n** Click **");
-			
-			CONTROLLER.sleep(1000);
-			
-			PRINTER.narrateln(" ___________________");
-			PRINTER.narrateln("|                   |");
-			PRINTER.narrateln("|                   |");
-			PRINTER.narrateln("|    O              |");
-			PRINTER.narrateln("|   /|\\             |");
-			PRINTER.narrateln("|  / | \\      O     |");
-			PRINTER.narrateln("|    ?       /|\\    |");
-			PRINTER.narrateln("|   / \\       |     |");
-			PRINTER.narrateln("|  /   \\     / \\    |");
-			PRINTER.narrateln("|___________________|");
-			
-			CONTROLLER.sleep(2000);
-			
-			CONTROLLER.player.increaseStrength();
-			CONTROLLER.sleep(1000);
-		}));
-		
-		events.add(new InteractionEvent("Take a Selfie2",() -> {
-			CONTROLLER.sleep(1000);
-			PRINTER.narrateln("\n** Click **");
+			ui.setScreenText("\n** Click **");
 			
 			CONTROLLER.sleep(1000);
 			
