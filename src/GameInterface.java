@@ -133,7 +133,7 @@ public class GameInterface {
 	}
 	
 	public void setScreenText(String text) {
-		screen.setText((screen.getText() == "" ? "<html><div style='padding:20px;'>" : screen.getText().substring(0,screen.getText().length() - 14)) + text + "</div></html>");
+		screen.setText((screen.getText() == "" ? "<html><div style='padding:20px;'>" : screen.getText().substring(0,screen.getText().length() - 12)) + text + "</div></html>");
 	}
 	
 	public void setCurrentLocation(Location location) {
