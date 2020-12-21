@@ -11,8 +11,11 @@ public class ActionChoiceListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		event.doEvent();
-		CONTROLLER.WAIT = false;
+		
+		new Thread(() -> {
+			event.doEvent();
+			CONTROLLER.WAIT = false;
+        }).start();
 		
 	}
 

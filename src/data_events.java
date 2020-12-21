@@ -7,7 +7,6 @@ public class data_events {
 	
 	public static void init() {
 		events = new ArrayList<GameEvent>();
-		UserInterface ui = PRINTER.getUI();
 		
 		/* Events list:
 		 * 
@@ -124,157 +123,201 @@ public class data_events {
 		
 		//###################################> Take a Selfie <##################################################
 		
-		events.add(new InteractionEvent("Take a Selfie",() -> {
-			CONTROLLER.sleep(1000);
-			ui.setScreenText("\n** Click **");
-			
-			CONTROLLER.sleep(1000);
-			
-			PRINTER.narrateln(" ___________________");
-			PRINTER.narrateln("|                   |");
-			PRINTER.narrateln("|                   |");
-			PRINTER.narrateln("|    O              |");
-			PRINTER.narrateln("|   /|\\             |");
-			PRINTER.narrateln("|  / | \\      O     |");
-			PRINTER.narrateln("|    ?       /|\\    |");
-			PRINTER.narrateln("|   / \\       |     |");
-			PRINTER.narrateln("|  /   \\     / \\    |");
-			PRINTER.narrateln("|___________________|");
-			
-			CONTROLLER.sleep(2000);
-			
-			CONTROLLER.player.increaseStrength();
-			CONTROLLER.sleep(1000);
-		}));
+		events.add(new InteractionEvent("Take a Selfie") {
+			public void doEvent() {
+				super.doEvent();
+				CONTROLLER.sleep(1000);
+				PRINTER.narrateln("\n** Click **");
+				
+				CONTROLLER.sleep(1000);
+				
+				PRINTER.narrateln(" ___________________");
+				PRINTER.narrate("\n|                   |");
+				PRINTER.narrate("\n|                   |");
+				PRINTER.narrate("\n|    O              |");
+				PRINTER.narrate("\n|   /|\\             |");
+				PRINTER.narrate("\n|  / | \\      O     |");
+				PRINTER.narrate("\n|    ?       /|\\    |");
+				PRINTER.narrate("\n|   / \\       |     |");
+				PRINTER.narrate("\n|  /   \\     / \\    |");
+				PRINTER.narrate("\n|___________________|");
+				
+				CONTROLLER.sleep(2000);
+				
+				CONTROLLER.player.increaseStrength();
+				CONTROLLER.sleep(1000);
+			}
+		});
+		
+		events.add(new InteractionEvent("Take a Selfie2") {
+			public void doEvent() {
+				super.doEvent();
+				CONTROLLER.sleep(1000);
+				PRINTER.narrateln("\n** Click **");
+				
+				CONTROLLER.sleep(1000);
+				
+				PRINTER.narrateln(" ___________________");
+				PRINTER.narrate("|                   |");
+				PRINTER.narrate("|                   |");
+				PRINTER.narrate("|    O              |");
+				PRINTER.narrate("|   /|\\             |");
+				PRINTER.narrate("|  / | \\      O     |");
+				PRINTER.narrate("|    ?       /|\\    |");
+				PRINTER.narrate("|   / \\       |     |");
+				PRINTER.narrate("|  /   \\     / \\    |");
+				PRINTER.narrate("|___________________|");
+				
+				CONTROLLER.sleep(2000);
+				
+				CONTROLLER.player.increaseStrength();
+				CONTROLLER.sleep(3000);
+				PRINTER.narrateln("");
+			}
+		});
 		
 		
 		//###################################> Watch the Hippos <##################################################
 		
-		events.add(new InteractionEvent("Watch the Hippos",20,() -> {
-			
-			int rando = (int)(Math.random() * 4);
-			if (rando == 0) {
-				CONTROLLER.sleep(4000);
-				PRINTER.say("\nO",CONTROLLER.player);
-				CONTROLLER.sleep(100);
-				PRINTER.say("H ",CONTROLLER.player);
-				CONTROLLER.sleep(500);
-				PRINTER.say("N",CONTROLLER.player);
-				CONTROLLER.sleep(100);
-				PRINTER.say("O",CONTROLLER.player);
-				CONTROLLER.sleep(100);
-				PRINTER.say("!",CONTROLLER.player);
-				CONTROLLER.sleep(100);
-				PRINTER.say("!",CONTROLLER.player);
-				CONTROLLER.sleep(100);
-				PRINTER.say("!",CONTROLLER.player);
-				CONTROLLER.sleep(100);
-				PRINTER.say("!",CONTROLLER.player);
-				CONTROLLER.sleep(100);
-				PRINTER.say("!",CONTROLLER.player);
-				CONTROLLER.sleep(100);
-				PRINTER.sayln("!",CONTROLLER.player);
-				CONTROLLER.sleep(1000);
-				
-				PRINTER.narrateln("Timmy fell into the hippo exhibit");
-				CONTROLLER.GAME.preGameRunning = false;
-				return;
-			} else {
-				CONTROLLER.sleep(1000);
-				PRINTER.narrateln("You watch the hippos.");
-				
-				CONTROLLER.sleep(2000);
-				PRINTER.narrateln("They watch you back...");
-				
-				CONTROLLER.sleep(1000);
+		events.add(new InteractionEvent("Watch the Hippos",20) {
+			public void doEvent() {
+				super.doEvent();
+				int rando = (int)(Math.random() * 4);
+				if (rando == 0) {
+					CONTROLLER.sleep(4000);
+					PRINTER.sayln("\nO",CONTROLLER.player);
+					CONTROLLER.sleep(100);
+					PRINTER.say("H ",CONTROLLER.player);
+					CONTROLLER.sleep(500);
+					PRINTER.say("N",CONTROLLER.player);
+					CONTROLLER.sleep(100);
+					PRINTER.say("O",CONTROLLER.player);
+					CONTROLLER.sleep(100);
+					PRINTER.say("!",CONTROLLER.player);
+					CONTROLLER.sleep(100);
+					PRINTER.say("!",CONTROLLER.player);
+					CONTROLLER.sleep(100);
+					PRINTER.say("!",CONTROLLER.player);
+					CONTROLLER.sleep(100);
+					PRINTER.say("!",CONTROLLER.player);
+					CONTROLLER.sleep(100);
+					PRINTER.say("!",CONTROLLER.player);
+					CONTROLLER.sleep(100);
+					PRINTER.say("!",CONTROLLER.player);
+					CONTROLLER.sleep(1000);
+					
+					PRINTER.narrate("\n\nTimmy fell into the hippo exhibit");
+					CONTROLLER.GAME.preGameRunning = false;
+					return;
+				} else {
+					CONTROLLER.sleep(1000);
+					PRINTER.narrateln("You watch the hippos.");
+					
+					CONTROLLER.sleep(2000);
+					PRINTER.narrate("\n\nThey watch you back...");
+					
+					CONTROLLER.sleep(1000);
+				}
 			}
-		}));
+		});
 		
 		
 		//###################################> Feed the Turtles <##################################################
 		
-		events.add(new InteractionEvent("Feed the Turtles",() -> {
-			CONTROLLER.sleep(1000);
-			PRINTER.narrateln("You decided to feed the turtles.");
-			
-			CONTROLLER.player.increaseStrength();
-			CONTROLLER.sleep(1000);
-		}));
+		events.add(new InteractionEvent("Feed the Turtles") {
+			public void doEvent() {
+				super.doEvent();
+				CONTROLLER.sleep(1000);
+				PRINTER.narrateln("You decided to feed the turtles.");
+				
+				CONTROLLER.player.increaseStrength();
+				CONTROLLER.sleep(1000);
+			}
+		});
 		
 		
 		//###################################> Order Something <##################################################
 		
-		events.add(new InteractionEvent("Order Something",() -> {
-			ArrayList<FoodItem> foods = new ArrayList<FoodItem>();
-			foods.add(new FoodItem(3,"Cheeseburger",12));
-			foods.add(new FoodItem(1,"French Fried",6));
-			foods.add(new FoodItem(2,"Chicken Nugger",10));
-			foods.add(new FoodItem(2,"Shake",8));
-			PRINTER.narrateln("Welcome to the food court!");
-			String input = "";
-			Scanner in = new Scanner(System.in);
-			while (input.compareToIgnoreCase("q") != 0) {
-				PRINTER.narrateln("Here is what we have available:");
-				int count = 0;
-				for (FoodItem f : foods) {
-					PRINTER.narrateln("[" + count++ + "]: " + f.getName() + " ($" + f.getPrice() + ")");
+		events.add(new InteractionEvent("Order Something") {
+			public void doEvent() {
+				super.doEvent();
+				ArrayList<FoodItem> foods = new ArrayList<FoodItem>();
+				foods.add(new FoodItem(3,"Cheeseburger",12));
+				foods.add(new FoodItem(1,"French Fried",6));
+				foods.add(new FoodItem(2,"Chicken Nugger",10));
+				foods.add(new FoodItem(2,"Shake",8));
+				PRINTER.narrateln("Welcome to the food court!");
+				String input = "";
+				Scanner in = new Scanner(System.in);
+				while (input.compareToIgnoreCase("q") != 0) {
+					PRINTER.narrateln("Here is what we have available:");
+					int count = 0;
+					for (FoodItem f : foods) {
+						PRINTER.narrateln("[" + count++ + "]: " + f.getName() + " ($" + f.getPrice() + ")");
+					}
+					PRINTER.narrateln("What would you like to buy?: ");
+					input = in.nextLine();
+					
+					if (input.length() < 3) {
+						continue;
+					} else if (input.charAt(0) == 'b') {
+						int index = Integer.parseInt(input.replaceAll("[\\D]", ""));
+						CONTROLLER.player.addToInventory(foods.get(index));
+						foods.remove(foods.get(index));
+					} 
 				}
-				PRINTER.narrateln("What would you like to buy?: ");
-				input = in.nextLine();
-				
-				if (input.length() < 3) {
-					continue;
-				} else if (input.charAt(0) == 'b') {
-					int index = Integer.parseInt(input.replaceAll("[\\D]", ""));
-					CONTROLLER.player.addToInventory(foods.get(index));
-					foods.remove(foods.get(index));
-				} 
 			}
 			
-		}));
+		});
 		
 		
 		//###################################> Mock the Flamingos <##################################################
 		
-		events.add(new InteractionEvent("Mock the Flamingos",5,() -> {
-			CONTROLLER.sleep(1000);
-			PRINTER.narrateln("You lift one foot off the ground.");
-			
-			CONTROLLER.sleep(1000);
-			PRINTER.narrateln("You extend your neck.");
-			
-			CONTROLLER.sleep(1000);
-			PRINTER.narrateln("You retract your arms.");
-			
-			CONTROLLER.sleep(5000);
-			int rando = (int)(Math.random() * 5);
-			if (rando == 0) {
-				PRINTER.narrateln("The flamingos honk their disapproval.");
-				CONTROLLER.player.increaseStrength(4);
-			} else {
-				PRINTER.narrateln("The flamingos were not amused.");
+		events.add(new InteractionEvent("Mock the Flamingos",5) {
+			public void doEvent() {
+				super.doEvent();
+				CONTROLLER.sleep(1000);
+				PRINTER.narrateln("You lift one foot off the ground.");
+				
+				CONTROLLER.sleep(1000);
+				PRINTER.narrateln("You extend your neck.");
+				
+				CONTROLLER.sleep(1000);
+				PRINTER.narrateln("You retract your arms.");
+				
+				CONTROLLER.sleep(5000);
+				int rando = (int)(Math.random() * 5);
+				if (rando == 0) {
+					PRINTER.narrateln("The flamingos honk their disapproval.");
+					CONTROLLER.player.increaseStrength(4);
+				} else {
+					PRINTER.narrateln("The flamingos were not amused.");
+				}
+				CONTROLLER.sleep(1000);
 			}
-			CONTROLLER.sleep(1000);
-		}));
+		});
 		
 		
 		//###################################> Buy a Toy Hippo for Timmy <##################################################
 		
-		events.add(new InteractionEvent("Buy a Toy Hippo for Timmy",() -> {
-			CONTROLLER.sleep(1000);
-			PRINTER.narrateln("You buy the toy hippo for $30.");
-			
-			CONTROLLER.sleep(1000);
-			PRINTER.narrateln("You eye the hippo suspiciously.");
-			
-			CONTROLLER.sleep(2000);
-			PRINTER.narrateln("It eyes you back...");
-			
-			CONTROLLER.sleep(1000);
-			
-			CONTROLLER.player.increaseStrength();
-			CONTROLLER.sleep(1000);
-		}));
+		events.add(new InteractionEvent("Buy a Toy Hippo for Timmy") {
+			public void doEvent() {
+				super.doEvent();
+				CONTROLLER.sleep(1000);
+				PRINTER.narrateln("You buy the toy hippo for $30.");
+				
+				CONTROLLER.sleep(1000);
+				PRINTER.narrateln("You eye the hippo suspiciously.");
+				
+				CONTROLLER.sleep(2000);
+				PRINTER.narrateln("It eyes you back...");
+				
+				CONTROLLER.sleep(1000);
+				
+				CONTROLLER.player.increaseStrength();
+				CONTROLLER.sleep(1000);
+			}
+		});
 	}
 	
 	public static GameEvent getEvent(String title) {

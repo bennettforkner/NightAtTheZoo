@@ -16,8 +16,11 @@ public class CreatureChoiceListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		new Thread(() -> {
+			CONTROLLER.SELECTEDCREATURE = this.creature;
+        }).start();
 		//this.jbutt.setBackground(new Color(110,110,110));
-		CONTROLLER.SELECTEDCREATURE = this.creature;
+		
 	}
 
 }

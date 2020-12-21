@@ -2,19 +2,20 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ButtonListener implements ActionListener {
+public class ControlListener implements ActionListener {
 	
 	private Control event;
 
-	public ButtonListener(Control ev) {
+	public ControlListener(Control ev) {
 		this.event = ev;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		event.run();
-		CONTROLLER.WAIT = false;
-		//PRINTER.clearButtonColors();
+		new Thread(() -> {
+			event.run();
+			CONTROLLER.WAIT = false;
+        }).start();
 	}
 
 }

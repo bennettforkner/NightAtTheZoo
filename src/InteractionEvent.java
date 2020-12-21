@@ -1,25 +1,19 @@
 import java.util.ArrayList;
 
-public class InteractionEvent implements GameEvent {
+public abstract class InteractionEvent implements GameEvent {
 	
 	private ArrayList<Enemy> enemies;
-	
-	private Runnable interaction;
 
 	private String title;
 	
 	private int usesLeft;
 
-	public InteractionEvent(String title,Runnable interaction) {
-		enemies = new ArrayList<Enemy>();
-		this.interaction = interaction;
-		this.title = title;
-		this.usesLeft = 1;
+	public InteractionEvent(String title) {
+		this(title,1);
 	}
 	
-	public InteractionEvent(String title, int usesLeft, Runnable interaction) {
+	public InteractionEvent(String title, int usesLeft) {
 		enemies = new ArrayList<Enemy>();
-		this.interaction = interaction;
 		this.title = title;
 		this.usesLeft = usesLeft;
 	}
@@ -27,9 +21,7 @@ public class InteractionEvent implements GameEvent {
 	@SuppressWarnings("unlikely-arg-type")
 	@Override
 	public void doEvent() {
-		interaction.run();
 		this.usesLeft--;
-		System.out.println(this.usesLeft);
 		if (this.usesLeft == 0) {
 			CONTROLLER.GAME.getLocations().remove(this);
 		}

@@ -47,6 +47,13 @@ public class UserInterface {
 	private JLabel currentLocation = new JLabel();
 	
 	public UserInterface() {
+		
+		try {
+			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+		} catch (Exception e) {
+			e.printStackTrace(); 
+		}
+		
 		window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         window.setLocation(WINDOW_X_POSITION, WINDOW_Y_POSITION);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,7 +133,7 @@ public class UserInterface {
 	}
 	
 	public void setScreenText(String text) {
-		screen.setText("<html><div style='padding:20px;'>" + text + "</div></html>");
+		screen.setText((screen.getText() == "" ? "<html><div style='padding:20px;'>" : screen.getText().substring(0,screen.getText().length() - 14)) + text + "</div></html>");
 	}
 	
 	public void setCurrentLocation(Location location) {
@@ -135,37 +142,14 @@ public class UserInterface {
 
 	public void displayLocationChoice(ArrayList<Location> locations) {
 		clearLocations();
+		if (locations.size() < 0)
+			return;
 		locationBlock.setLayout(new GridLayout(locations.size(),0));
 		System.out.println(locations.size());
 		for (Location l : locations) {
-			JButton choice = new JButton(l.getLocationName());
+			JButton choice = new GameControlButton(l.getLocationName());
 			choice.setFont(new Font("Foop", 20, 20));
 			choice.addActionListener(new LocationChoiceListener(l,choice));
-        	choice.setVisible(true);
-        	choice.setOpaque(true);
-        	choice.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        	
-        	choice.addMouseListener(new java.awt.event.MouseAdapter() {
-        	    public void mouseEntered(java.awt.event.MouseEvent evt) {
-        	        choice.setBackground(Color.BLACK);
-        	    }
-
-        	    public void mouseExited(java.awt.event.MouseEvent evt) {
-        	        choice.setBackground(UIManager.getColor("control"));
-        	    }
-        	});
-        	choice.addChangeListener(new ChangeListener() {
-                @Override
-                public void stateChanged(ChangeEvent evt) {
-                    if (choice.getModel().isPressed()) {
-                    	choice.setBackground(Color.GREEN);
-                    } else if (choice.getModel().isRollover()) {
-                    	choice.setBackground(Color.PINK);
-                    } else {
-                    	choice.setBackground(UIManager.getColor("control"));
-                    }
-                }
-            });
         	
         	locationChoice.add(choice);
         	locationBlock.add(choice);
@@ -175,36 +159,13 @@ public class UserInterface {
 	
 	public void displayCreatureChoice(ArrayList<Creature> creatures) {
 		clearCreatures();
+		if (creatures.size() < 0)
+			return;
 		creatureBlock.setLayout(new GridLayout(creatures.size(),1));
 		for (Creature c : creatures) {
-			JButton choice = new JButton(c.getName());
+			JButton choice = new GameControlButton(c.getName());
 			choice.setFont(new Font("Foop", 20, 20));
 			choice.addActionListener(new CreatureChoiceListener(c,choice));
-        	choice.setVisible(true);
-        	choice.setOpaque(true);
-        	choice.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        	
-        	choice.addMouseListener(new java.awt.event.MouseAdapter() {
-        	    public void mouseEntered(java.awt.event.MouseEvent evt) {
-        	    	choice.setBackground(Color.BLACK);
-        	    }
-
-        	    public void mouseExited(java.awt.event.MouseEvent evt) {
-        	        choice.setBackground(UIManager.getColor("control"));
-        	    }
-        	});
-        	choice.addChangeListener(new ChangeListener() {
-                @Override
-                public void stateChanged(ChangeEvent evt) {
-                    if (choice.getModel().isPressed()) {
-                    	choice.setBackground(Color.GREEN);
-                    } else if (choice.getModel().isRollover()) {
-                    	choice.setBackground(Color.PINK);
-                    } else {
-                    	choice.setBackground(UIManager.getColor("control"));
-                    }
-                }
-            });
         	
         	creatureChoice.add(choice);
         	creatureBlock.add(choice);
@@ -213,36 +174,15 @@ public class UserInterface {
 	
 	public void displayActionChoice(ArrayList<InteractionEvent> actions) {
 		clearActions();
+		if (actions.size() < 0)
+			return;
 		actionBlock.setLayout(new GridLayout(actions.size(),1));
 		for (InteractionEvent a : actions) {
-			JButton choice = new JButton(a.getTitle());
+			System.out.println(a.getTitle());
+			JButton choice = new GameControlButton(a.getTitle());
 			choice.setFont(new Font("Foop", 20, 20));
+			new Font(null, 0, 0);
 			choice.addActionListener(new ActionChoiceListener(a));
-        	choice.setVisible(true);
-        	choice.setOpaque(true);
-        	choice.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        	
-        	choice.addMouseListener(new java.awt.event.MouseAdapter() {
-        	    public void mouseEntered(java.awt.event.MouseEvent evt) {
-        	    	choice.setBackground(Color.BLACK);
-        	    }
-
-        	    public void mouseExited(java.awt.event.MouseEvent evt) {
-        	        choice.setBackground(UIManager.getColor("control"));
-        	    }
-        	});
-        	choice.addChangeListener(new ChangeListener() {
-                @Override
-                public void stateChanged(ChangeEvent evt) {
-                    if (choice.getModel().isPressed()) {
-                    	choice.setBackground(Color.GREEN);
-                    } else if (choice.getModel().isRollover()) {
-                    	choice.setBackground(Color.PINK);
-                    } else {
-                    	choice.setBackground(UIManager.getColor("control"));
-                    }
-                }
-            });
         	
         	actionChoice.add(choice);
         	actionBlock.add(choice);
@@ -252,26 +192,13 @@ public class UserInterface {
 	
 	public void displayButtons(ArrayList<Control> controls) {
 		//butts = new String[] {"T", "^", "S", "<"};
+		if (controls.size() < 0)
+			return;
 		clearButtons();
         buttons.setLayout(new GridLayout(1,controls.size()));
         for (Control c : controls) {
-	        	JButton button = new JButton(c.controlName);
-	        	button.addActionListener(new ButtonListener(c));
-	        	button.setVisible(true);
-	        	button.setOpaque(true);
-	        	button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-	        	
-	        	button.addMouseListener(new java.awt.event.MouseAdapter() {
-	        	    public void mouseEntered(java.awt.event.MouseEvent evt) {
-	        	    	button.setBackground(Color.BLACK);
-	        	    }
-
-	        	    public void mouseExited(java.awt.event.MouseEvent evt) {
-	        	    	button.setBackground(UIManager.getColor("control"));
-	        	    }
-	        	});
-	        	
-	        	
+	        	JButton button = new GameControlButton(c.controlName);
+	        	button.addActionListener(new ControlListener(c));
 	        	buttons.add(button);
 	        	buttonMap.put(c.controlName,button);
         }
@@ -289,9 +216,8 @@ public class UserInterface {
 		}
 	}
 	
-	private void clearActions() {
+	public void clearActions() {
 		this.actionBlock.removeAll();
-		
 	}
 
 	public void clearButtons() {
@@ -312,5 +238,10 @@ public class UserInterface {
 
 	public void close() {
 		this.window.dispose();
+	}
+
+	public void clearScreenText() {
+		screen.setText("");
+		
 	}
 }

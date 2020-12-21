@@ -19,9 +19,9 @@ public class Game {
 	public void init() {
 		Scanner in = new Scanner(System.in);
 		PRINTER.prompt("Enter your name: ");
-		String name = in.nextLine();
+		String name = "Bennett";//in.nextLine();
 		PRINTER.prompt("Enter your catch phrase: ");
-		String catchPhrase = in.nextLine();
+		String catchPhrase = "yes";//in.nextLine();
 		CONTROLLER.player = new Player(name, 5, 1, catchPhrase,0);
 		ArrayList<Control> controls = new ArrayList<Control>();
 		controls.add(new Control("GO", "move from one location to another.", 'g', false, new Runner() {
@@ -66,14 +66,22 @@ public class Game {
 	}
 	
 	public void setCurrentLocation(Location location) {
-		currentLocation = location;
 		PRINTER.setCurrentLocation(location);
+		currentLocation = location;
 		if (currentLocation.getAccessibleLocations().size() > 0)
 			PRINTER.displayLocations();
+		else
+			PRINTER.clearLocations();
 		if (currentLocation.getLocationCreatures().size() > 0)
 			PRINTER.displayCreatures();
+		else
+			PRINTER.clearCreatures();
 		if (currentLocation.getLocationInteractions().size() > 0)
 			PRINTER.displayActions();
+		else
+			PRINTER.clearActions();
+
+		//CONTROLLER.GAME.controls.toString();
 	}
 	
 	public Location getCurrentLocation() {

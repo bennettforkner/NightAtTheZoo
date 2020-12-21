@@ -16,8 +16,9 @@ public class LocationChoiceListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//this.jbutt.setBackground(new Color(110,110,110));
-		CONTROLLER.SELECTEDLOCATION = this.location;
+		new Thread(() -> {
+			CONTROLLER.SELECTEDLOCATION = this.location;
+        }).start();
 	}
 
 }

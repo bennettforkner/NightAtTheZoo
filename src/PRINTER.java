@@ -46,14 +46,14 @@ public class PRINTER {
 	public static void narrate(String in) {
 		//System.out.print(CYAN + in.replace(RESET, CYAN) + RESET);
 		//ui.setScreenColor(new Color(0, 0, 0));
-		ui.setScreenText(in);
+		ui.setScreenText(in.replace("\n","<br>"));
 	}
 	
 	public static void narrateln(String in) {
 		//System.out.println(CYAN + in.replace(RESET, CYAN) + RESET);
 		//ui.setScreenColor(new Color(0, 0, 0));
-		ui.setScreenText("");
-		ui.setScreenText(in);
+		ui.clearScreenText();
+		ui.setScreenText(in.replace("\n","<br>"));
 	}
 	
 	public static void say(String in,Creature c) {
@@ -65,6 +65,7 @@ public class PRINTER {
 	public static void sayln(String in,Creature c) {
 		System.out.println(YELLOW + in.replace(RESET, YELLOW) + RESET);
 		ui.setScreenColor(new Color(255, 0, 0));
+		ui.clearScreenText();
 		ui.setScreenText(in.replace("\n", "<br>"));
 	}
 	
@@ -123,5 +124,17 @@ public class PRINTER {
 	
 	public static UserInterface getUI() {
 		return ui;
+	}
+
+	public static void clearLocations() {
+		ui.clearLocations();
+	}
+	
+	public static void clearCreatures() {
+		ui.clearCreatures();
+	}
+	
+	public static void clearActions() {
+		ui.clearActions();
 	}
 }

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class FightEvent implements GameEvent {
+public abstract class FightEvent implements GameEvent {
 	
 	private ArrayList<Enemy> enemies;
 
@@ -9,10 +9,7 @@ public class FightEvent implements GameEvent {
 	}
 	
 	@Override
-	public void doEvent() {
-		
-
-	}
+	public abstract void doEvent();
 
 	/**
 	 * @return the enemies
