@@ -25,7 +25,10 @@ public abstract class InteractionEvent implements GameEvent {
 		if (this.usesLeft == 0) {
 			CONTROLLER.GAME.getLocations().remove(this);
 		}
+		this.runEvent();
 	}
+	
+	public abstract void runEvent();
 
 	/**
 	 * @return the enemies

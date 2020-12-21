@@ -21,7 +21,7 @@ public class GameControlButton extends JButton {
     	
 		this.addMouseListener(new java.awt.event.MouseAdapter() {
     	    public void mouseEntered(java.awt.event.MouseEvent evt) {
-    	    	setBackground(Color.BLACK);
+    	    	setBackground(Color.GREEN);
     	    }
 
     	    public void mouseExited(java.awt.event.MouseEvent evt) {

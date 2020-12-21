@@ -16,6 +16,8 @@ public class ControlListener implements ActionListener {
 			event.run();
 			CONTROLLER.WAIT = false;
         }).start();
+		CONTROLLER.sleep(1000);
+		PRINTER.displayControls();
 	}
 
 }

@@ -22,7 +22,7 @@ import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class UserInterface {
+public class GameInterface {
 	
 	private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private static final double screenHeight = screenSize.getHeight();
@@ -46,7 +46,7 @@ public class UserInterface {
 	private JPanel actionBlock = new JPanel();
 	private JLabel currentLocation = new JLabel();
 	
-	public UserInterface() {
+	public GameInterface() {
 		
 		try {
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());

@@ -67,19 +67,10 @@ public class Game {
 	
 	public void setCurrentLocation(Location location) {
 		PRINTER.setCurrentLocation(location);
-		currentLocation = location;
-		if (currentLocation.getAccessibleLocations().size() > 0)
-			PRINTER.displayLocations();
-		else
-			PRINTER.clearLocations();
-		if (currentLocation.getLocationCreatures().size() > 0)
-			PRINTER.displayCreatures();
-		else
-			PRINTER.clearCreatures();
-		if (currentLocation.getLocationInteractions().size() > 0)
-			PRINTER.displayActions();
-		else
-			PRINTER.clearActions();
+		this.currentLocation = location;
+		PRINTER.displayLocations();
+		PRINTER.displayCreatures();
+		PRINTER.displayActions();
 
 		//CONTROLLER.GAME.controls.toString();
 	}

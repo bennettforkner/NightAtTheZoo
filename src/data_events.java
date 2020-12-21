@@ -124,8 +124,7 @@ public class data_events {
 		//###################################> Take a Selfie <##################################################
 		
 		events.add(new InteractionEvent("Take a Selfie") {
-			public void doEvent() {
-				super.doEvent();
+			public void runEvent() {
 				CONTROLLER.sleep(1000);
 				PRINTER.narrateln("\n** Click **");
 				
@@ -150,29 +149,26 @@ public class data_events {
 		});
 		
 		events.add(new InteractionEvent("Take a Selfie2") {
-			public void doEvent() {
-				super.doEvent();
+			public void runEvent() {
 				CONTROLLER.sleep(1000);
 				PRINTER.narrateln("\n** Click **");
 				
 				CONTROLLER.sleep(1000);
 				
 				PRINTER.narrateln(" ___________________");
-				PRINTER.narrate("|                   |");
-				PRINTER.narrate("|                   |");
-				PRINTER.narrate("|    O              |");
-				PRINTER.narrate("|   /|\\             |");
-				PRINTER.narrate("|  / | \\      O     |");
-				PRINTER.narrate("|    ?       /|\\    |");
-				PRINTER.narrate("|   / \\       |     |");
-				PRINTER.narrate("|  /   \\     / \\    |");
-				PRINTER.narrate("|___________________|");
+				PRINTER.narrate("\n|                   |");
+				PRINTER.narrate("\n|                   |");
+				PRINTER.narrate("\n|    O              |");
+				PRINTER.narrate("\n|   /|\\             |");
+				PRINTER.narrate("\n|  / | \\      O     |");
+				PRINTER.narrate("\n|    ?       /|\\    |");
+				PRINTER.narrate("\n|   / \\       |     |");
+				PRINTER.narrate("\n|  /   \\     / \\    |");
+				PRINTER.narrate("\n|___________________|");
 				
 				CONTROLLER.sleep(2000);
 				
 				CONTROLLER.player.increaseStrength();
-				CONTROLLER.sleep(3000);
-				PRINTER.narrateln("");
 			}
 		});
 		
@@ -180,8 +176,7 @@ public class data_events {
 		//###################################> Watch the Hippos <##################################################
 		
 		events.add(new InteractionEvent("Watch the Hippos",20) {
-			public void doEvent() {
-				super.doEvent();
+			public void runEvent() {
 				int rando = (int)(Math.random() * 4);
 				if (rando == 0) {
 					CONTROLLER.sleep(4000);
@@ -225,8 +220,7 @@ public class data_events {
 		//###################################> Feed the Turtles <##################################################
 		
 		events.add(new InteractionEvent("Feed the Turtles") {
-			public void doEvent() {
-				super.doEvent();
+			public void runEvent() {
 				CONTROLLER.sleep(1000);
 				PRINTER.narrateln("You decided to feed the turtles.");
 				
@@ -239,8 +233,7 @@ public class data_events {
 		//###################################> Order Something <##################################################
 		
 		events.add(new InteractionEvent("Order Something") {
-			public void doEvent() {
-				super.doEvent();
+			public void runEvent() {
 				ArrayList<FoodItem> foods = new ArrayList<FoodItem>();
 				foods.add(new FoodItem(3,"Cheeseburger",12));
 				foods.add(new FoodItem(1,"French Fried",6));
@@ -274,8 +267,7 @@ public class data_events {
 		//###################################> Mock the Flamingos <##################################################
 		
 		events.add(new InteractionEvent("Mock the Flamingos",5) {
-			public void doEvent() {
-				super.doEvent();
+			public void runEvent() {
 				CONTROLLER.sleep(1000);
 				PRINTER.narrateln("You lift one foot off the ground.");
 				
@@ -301,8 +293,7 @@ public class data_events {
 		//###################################> Buy a Toy Hippo for Timmy <##################################################
 		
 		events.add(new InteractionEvent("Buy a Toy Hippo for Timmy") {
-			public void doEvent() {
-				super.doEvent();
+			public void runEvent() {
 				CONTROLLER.sleep(1000);
 				PRINTER.narrateln("You buy the toy hippo for $30.");
 				

@@ -13,7 +13,7 @@ public class PRINTER {
 	public static String CYAN = "";
 	public static String WHITE = "";
 	
-	private static UserInterface ui;
+	private static GameInterface gi;
 	
 	public static void initMAC() {
 		RESET = "\u001B[0m";
@@ -27,8 +27,8 @@ public class PRINTER {
 		WHITE = "\u001B[37m";
 	}
 	
-	public static void setUI(UserInterface userint) {
-		ui = userint;
+	public static void setUI(GameInterface gameint) {
+		gi = gameint;
 	}
 	
 	public static void initWIN10() {
@@ -46,27 +46,27 @@ public class PRINTER {
 	public static void narrate(String in) {
 		//System.out.print(CYAN + in.replace(RESET, CYAN) + RESET);
 		//ui.setScreenColor(new Color(0, 0, 0));
-		ui.setScreenText(in.replace("\n","<br>"));
+		gi.setScreenText(in.replace("\n","<br>"));
 	}
 	
 	public static void narrateln(String in) {
 		//System.out.println(CYAN + in.replace(RESET, CYAN) + RESET);
 		//ui.setScreenColor(new Color(0, 0, 0));
-		ui.clearScreenText();
-		ui.setScreenText(in.replace("\n","<br>"));
+		gi.clearScreenText();
+		gi.setScreenText(in.replace("\n","<br>"));
 	}
 	
 	public static void say(String in,Creature c) {
 		System.out.print(YELLOW + in.replace(RESET, YELLOW) + RESET);
-		ui.setScreenColor(new Color(255, 0, 0));
-		ui.setScreenText(in.replace("\n", "<br>"));
+		gi.setScreenColor(new Color(255, 0, 0));
+		gi.setScreenText(in.replace("\n", "<br>"));
 	}
 	
 	public static void sayln(String in,Creature c) {
 		System.out.println(YELLOW + in.replace(RESET, YELLOW) + RESET);
-		ui.setScreenColor(new Color(255, 0, 0));
-		ui.clearScreenText();
-		ui.setScreenText(in.replace("\n", "<br>"));
+		gi.setScreenColor(new Color(255, 0, 0));
+		gi.clearScreenText();
+		gi.setScreenText(in.replace("\n", "<br>"));
 	}
 	
 	public static void think(String in) {
@@ -98,43 +98,43 @@ public class PRINTER {
 	}
 
 	public static void displayControls() {
-		ui.displayButtons(CONTROLLER.GAME.controls.getControls());
+		gi.displayButtons(CONTROLLER.GAME.controls.getControls());
 		
 	}
 	
 	public static void displayCreatures() {
-		ui.displayCreatureChoice(CONTROLLER.GAME.getCurrentLocation().getLocationCreatures());
+		gi.displayCreatureChoice(CONTROLLER.GAME.getCurrentLocation().getLocationCreatures());
 	}
 
 	public static void displayLocations() {
-		ui.displayLocationChoice(CONTROLLER.GAME.getCurrentLocation().getAccessibleLocations());
+		gi.displayLocationChoice(CONTROLLER.GAME.getCurrentLocation().getAccessibleLocations());
 	}
 	
 	public static void displayActions() {
-		ui.displayActionChoice(CONTROLLER.GAME.getCurrentLocation().getLocationInteractions());
+		gi.displayActionChoice(CONTROLLER.GAME.getCurrentLocation().getLocationInteractions());
 	}
 	
 	public static void setCurrentLocation(Location l) {
-		ui.setCurrentLocation(l);
+		gi.setCurrentLocation(l);
 	}
 
 	public static void clearButtonColors() {
-		ui.clearButtonColoring();
+		gi.clearButtonColoring();
 	}
 	
-	public static UserInterface getUI() {
-		return ui;
+	public static GameInterface getUI() {
+		return gi;
 	}
 
 	public static void clearLocations() {
-		ui.clearLocations();
+		gi.clearLocations();
 	}
 	
 	public static void clearCreatures() {
-		ui.clearCreatures();
+		gi.clearCreatures();
 	}
 	
 	public static void clearActions() {
-		ui.clearActions();
+		gi.clearActions();
 	}
 }

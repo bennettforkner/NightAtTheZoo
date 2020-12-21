@@ -2,10 +2,10 @@
 public class Menu {
 	public static void main(String[] args) {
 		
-		UserInterface ui = new UserInterface();
-		PRINTER.setUI(ui);
+		GameInterface gi = new GameInterface();
+		PRINTER.setUI(gi);
 		
-		ui.setScreenText("Welcome to Night at the Zoo.");
+		gi.setScreenText("Welcome to Night at the Zoo.");
 		
 		if (System.getProperty("os.name").substring(0,6).compareToIgnoreCase("mac os") == 0) {
 			//PRINTER.initMAC();
