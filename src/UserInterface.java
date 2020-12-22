@@ -152,7 +152,7 @@ public class UserInterface {
 	
 	public void displayActionChoice(ArrayList<InteractionEvent> actions) {
 		clearActions();
-		locationBlock.setLayout(new GridLayout(actions.size(),1));
+		locationBlock.setLayout(new GridLayout(actions.size(),4)); //changed from 1 to 4
 		for (InteractionEvent a : actions) {
 			JButton choice = new JButton(a.getTitle());
 			choice.setFont(new Font("Foop", 20, 20));
