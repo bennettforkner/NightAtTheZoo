@@ -56,14 +56,14 @@ public class Location {
 	}
 
 	/**
-	 * @param items the items to set
+	 * @param item the item to add
 	 */
 	public void addItem(Item item) {
 		this.items.add(item);
 	}
 	
 	/**
-	 * @param items the items to set
+	 * @param index the index of the item to remove
 	 */
 	public void removeItem(int index) {
 		this.items.remove(index);
@@ -84,7 +84,7 @@ public class Location {
 	}
 
 	/**
-	 * @param event the event to add
+	 * @param interaction the InteractionEvent to add
 	 */
 	public void addLocationEvent(InteractionEvent interaction) {
 		this.interactions.add(interaction);

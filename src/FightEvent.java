@@ -1,35 +1,56 @@
 import java.util.ArrayList;
 
-public class FightEvent implements GameEvent {
+/**
+ * FightEvent is the class for GameEvents that involve fights with other Creatures
+ * 
+ * @author Bennett Forkner
+ * @since 12/21/2020
+ *
+ */
+public abstract class FightEvent implements GameEvent {
 	
+	/**
+	 * The enemies that this fight is with
+	 */
 	private ArrayList<Enemy> enemies;
 
-	public FightEvent(Location location) {
+	/**
+	 * The constructor for a FightEvent
+	 */
+	public FightEvent() {
 		enemies = new ArrayList<Enemy>();
 	}
 	
 	@Override
 	public void doEvent() {
 		
-
 	}
 
 	/**
+	 * The method to return the enemies involved in this fight
+	 * 
 	 * @return the enemies
+	 * 
 	 */
 	public ArrayList<Enemy> getEnemies() {
 		return enemies;
 	}
 
 	/**
-	 * @param enemy the enemies to add
+	 * The method to add an enemy to this fight
+	 * 
+	 * @param enemy the enemy to add
+	 * 
 	 */
 	public void addEnemy(Enemy enemy) {
 		this.enemies.add(enemy);
 	}
 	
 	/**
-	 * @param enemy the enemies to remove
+	 * The method to remove an enemy from this fight
+	 * 
+	 * @param enemy the enemy to remove
+	 * 
 	 */
 	public void removeEnemy(Enemy enemy) {
 		this.enemies.remove(enemy);
@@ -37,14 +58,12 @@ public class FightEvent implements GameEvent {
 
 	@Override
 	public String getTitle() {
-		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 
 	@Override
 	public int getUsesLeft() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	

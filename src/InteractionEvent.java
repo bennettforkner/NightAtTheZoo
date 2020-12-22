@@ -1,25 +1,46 @@
 import java.util.ArrayList;
 
-public class InteractionEvent implements GameEvent {
+/**
+ * InteractionEvent is the class to represent actions that a Player can complete
+ * 
+ * @author Bennett Forkner
+ * @since 12/21/2020
+ *
+ */
+public abstract class InteractionEvent implements GameEvent {
 	
-	private ArrayList<Enemy> enemies;
-	
-	private Runnable interaction;
-
+	/**
+	 * The friendly title of this InteractionEvent
+	 */
 	private String title;
 	
+	/**
+	 * The number of times that this InteractionEvent can be run
+	 */
 	private int usesLeft;
 
-	public InteractionEvent(String title,Runnable interaction) {
-		enemies = new ArrayList<Enemy>();
-		this.interaction = interaction;
-		this.title = title;
-		this.usesLeft = 1;
+	/**
+	 * The constructor for an InteractionEvent with no usesLeft
+	 * 
+	 * @param title The title of the InteractionEvent
+	 * 
+	 */
+	public InteractionEvent(String title) {
+		
+		// Call the below constructor with default variables appended
+		this(title,1);
+		
 	}
 	
-	public InteractionEvent(String title, int usesLeft, Runnable interaction) {
-		enemies = new ArrayList<Enemy>();
-		this.interaction = interaction;
+	/**
+	 * The constructor for an InteractionEvent with usesLeft
+	 * 
+	 * @param title The title of the InteractionEvent
+	 * @param usesLeft The amount of times that this InteractionEvent can be used
+	 */
+	public InteractionEvent(String title, int usesLeft) {
+		
+		// Set instance variables to passed parameters
 		this.title = title;
 		this.usesLeft = usesLeft;
 	}
@@ -27,36 +48,32 @@ public class InteractionEvent implements GameEvent {
 	@SuppressWarnings("unlikely-arg-type")
 	@Override
 	public void doEvent() {
-		interaction.run();
+		
+		// Decrement the amount of allowed uses left
 		this.usesLeft--;
-		System.out.println(this.usesLeft);
+		
+		// Conditional if the InteractionEvent has no uses left
 		if (this.usesLeft == 0) {
-			CONTROLLER.GAME.getLocations().remove(this);
+			
+			// Remove this InteractionEvent from the Location
+			CONTROLLER.GAME.getCurrentLocation().getLocationInteractions().remove(this);
+			
 		}
-	}
-
-	/**
-	 * @return the enemies
-	 */
-	public ArrayList<Enemy> getEnemies() {
-		return enemies;
-	}
-
-	/**
-	 * @param enemy the enemies to add
-	 */
-	public void addEnemy(Enemy enemy) {
-		this.enemies.add(enemy);
+		
+		// Run the logic for this InteractionEvent
+		this.runEvent();
 	}
 	
 	/**
-	 * @param enemy the enemies to remove
+	 * The method to store the logic of the InteractionEvent
+	 * This will be filled in subclasses (anonymous classes in data_events)
+	 * 
 	 */
-	public void removeEnemy(Enemy enemy) {
-		this.enemies.remove(enemy);
-	}
+	public abstract void runEvent();
 
 	/**
+	 * The method to return the title of this InteractionEvent
+	 * 
 	 * @return the title
 	 */
 	public String getTitle() {
@@ -66,6 +83,8 @@ public class InteractionEvent implements GameEvent {
 	
 
 	/**
+	 * The method to return the uses left that this InteractionEvent allows
+	 * 
 	 * @return the usesLeft
 	 */
 	public int getUsesLeft() {

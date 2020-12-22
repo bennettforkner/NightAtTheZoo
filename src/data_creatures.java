@@ -1,5 +1,11 @@
 import java.util.ArrayList;
 
+/**
+ * data_creatures is the class to keep track of the creatures that are a part of this Game
+ * 
+ * @author Bennett Forkner
+ *
+ */
 public class data_creatures {
 	
 	public Creature parkManager = new Person("Park Manager", 10, 5, "You're banned from my park.");
@@ -9,15 +15,31 @@ public class data_creatures {
 	public Creature mom = new Person("Your Mom", 10, 5, "Well I just won't have it!");
 	public Creature timmy = new Person("Timmy", 10, 5, "I love hippos!");
 	
+	/**
+	 * The list of Hippos to choose randomely from
+	 */
 	public ArrayList<Hippo> hippos;
 	
+	/**
+	 * The list of police to choose randomely from
+	 */
 	public ArrayList<Person> police;
 	
+	/**
+	 * The list of zookeepers to choose randomely from
+	 */
 	public ArrayList<Person> zookeepers;
 	
+	/**
+	 * The list of visitors to choose randomely from
+	 */
 	public ArrayList<Person> visitors;
 	
+	/**
+	 * The constructor for data_creatures
+	 */
 	public data_creatures() {
+		
 		this.hippos = new ArrayList<Hippo>();
 		hippos.add(new Hippo("", 80, 100, "You spotted, furry skunk."));
 		hippos.add(new Hippo(data_names.getRandomName().toString(), 80, 100, "You spotted, furry skunk."));

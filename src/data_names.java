@@ -1,23 +1,70 @@
 import java.util.ArrayList;
-
+/**
+ * data_names is the class to store data for getting random names,
+ * downloaded from a name generator
+ * 
+ * @author Bennett Forkner
+ * @since 12/21/2020
+ *
+ */
 public class data_names {
 	
+	/**
+	 * Name is a subclass that allows the connection of a first name with a last name
+	 * @author Bennett Forkner
+	 *
+	 */
 	public static class Name {
+		
+		/**
+		 * The first name
+		 */
 		public String first;
+		
+		/**
+		 * The last name
+		 */
 		public String last;
+		
+		/**
+		 * The constructor for a Name Object
+		 * 
+		 * @param first The first name
+		 * @param last The last name
+		 */
 		public Name(String first,String last) {
+			
+			// Set instance variables to passed parameters
 			this.first = first;
 			this.last = last;
+			
 		}
 		
+		/**
+		 * The method to set the default way of turning this object to a String
+		 */
 		public String toString() {
+			
 			return first + " " + last;
+			
 		}
 	}
+	
+	/**
+	 * The static ArrayList of names that can be used
+	 */
 	private static ArrayList<Name> names = new ArrayList<Name>();
 	
+	/**
+	 * The method to get a random name from the list of names
+	 * @return a random name
+	 */
 	public static Name getRandomName() {
+		
+		// Conditional if the names list is initialized with data
 		if (names.size() <= 0) {
+			
+			// Add names to list
 			names.add(new Name("Diamanda","Underhill"));
 			names.add(new Name("Dinodas","Gaukrogers"));
 			names.add(new Name("Marmaduc","Brown"));
@@ -396,8 +443,15 @@ public class data_names {
 			names.add(new Name("Eric","Peeler"));
 			names.add(new Name("Donald","Hernandez"));
 		}
+		
+		// Get random name from list
 		Name name = names.get((int)(Math.random() * names.size()));
+		
+		// Remove that name so that it is not used again
 		names.remove(name);
+		
+		// Return the random name
 		return name;
+		
 	}
 }
