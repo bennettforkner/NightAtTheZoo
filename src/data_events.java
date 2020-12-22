@@ -1,11 +1,26 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * data_events is the class to keep track of the GameEvents that occur in the Game
+ * 
+ * @author Bennett Forkner
+ * @since 12/21/2020
+ *
+ */
 public class data_events {
 	
+	/**
+	 * The list of events that have been created
+	 */
 	private static ArrayList<GameEvent> events;
 	
+	/**
+	 * The method to initialize the data in this class
+	 */
 	public static void init() {
+		
+		// Initialize events variable
 		events = new ArrayList<GameEvent>();
 		
 		/* Events list:
@@ -33,16 +48,16 @@ public class data_events {
 			"Your mom says that she wants to talk..."
 		);
 		
-		talkWithMom.conversations.add(0,new ConversationNode("Hey " + CONTROLLER.player.getName() + ", little Timmy wants to go to the zoo.\nCan you take him?", new Response[] {
+		talkWithMom.nodes.add(0,new ConversationNode("Hey " + CONTROLLER.player.getName() + ", little Timmy wants to go to the zoo.\nCan you take him?", new Response[] {
 			new Response("Yes! I would love to. Anything for my younger brother.", 1),
 			new Response("Aw, I would love to, but I have to finish my Calculus project.", 2),
 			new Response("No! I hate Timmy and I refuse to take him", 2)
 		}));
-		talkWithMom.conversations.add(1,new ConversationNode("Great! Enjoy your time together.", null,() -> {
+		talkWithMom.nodes.add(1,new ConversationNode("Great! Enjoy your time together.", null,() -> {
 			CONTROLLER.GAME.controls.getControl('g').setAvailable(true);
 			CONTROLLER.GAME.setCurrentLocation(CONTROLLER.GAME.getLocations().get(1));
 		}));
-		talkWithMom.conversations.add(2,new ConversationNode("It's just not an option for you to stay home honey.\nTimmy is really excited to see the hippos!\nAlso, you haven't done anything together in a long time.", new Response[] {
+		talkWithMom.nodes.add(2,new ConversationNode("It's just not an option for you to stay home honey.\nTimmy is really excited to see the hippos!\nAlso, you haven't done anything together in a long time.", new Response[] {
 			new Response("Ok, fine. I'll take him.", 1)
 		}));
 		CONTROLLER.GAME.creatures.mom.addConversation(talkWithMom);
@@ -57,13 +72,13 @@ public class data_events {
 				"Timmy looks like he is about to burst with excitement."
 			);
 			
-		talkWithTimmyHome.conversations.add(0,new ConversationNode("Hey " + CONTROLLER.player.getName() + ", mom said you were going to take me to the zoo!\nI can't wait to see the hippos.\nI hear they love to play paintball!", new Response[] {
+		talkWithTimmyHome.nodes.add(0,new ConversationNode("Hey " + CONTROLLER.player.getName() + ", mom said you were going to take me to the zoo!\nI can't wait to see the hippos.\nI hear they love to play paintball!", new Response[] {
 			new Response("Hi Timmy. Yea, let's go to the zoo", 1),
 			new Response("Aw, I would love to, but I have to finish my Calculus project.", 2),
 			new Response("No! I hate you and I refuse to take you to the zoo.", 2)
 		}));
-		talkWithTimmyHome.conversations.add(1,new ConversationNode("I can't wait. Tell mom when we're ready to go.", null));
-		talkWithTimmyHome.conversations.add(2,new ConversationNode("Yea? Well you should tell mom that.", null));
+		talkWithTimmyHome.nodes.add(1,new ConversationNode("I can't wait. Tell mom when we're ready to go.", null));
+		talkWithTimmyHome.nodes.add(2,new ConversationNode("Yea? Well you should tell mom that.", null));
 		
 		CONTROLLER.GAME.creatures.timmy.addConversation(talkWithTimmyHome);
 		events.add(talkWithTimmyHome);
@@ -77,40 +92,40 @@ public class data_events {
 				"Timmy is so excited to go to the zoo."
 			);
 			
-		talkWithTimmyHome2.conversations.add(0,new ConversationNode(CONTROLLER.player.getName() + ", I'm so glad you're my brother.\nYou're never selfish and always take me to the zoo when I want!", new Response[] {
+		talkWithTimmyHome2.nodes.add(0,new ConversationNode(CONTROLLER.player.getName() + ", I'm so glad you're my brother.\nYou're never selfish and always take me to the zoo when I want!", new Response[] {
 			new Response("Timmy, why can't you just be normal. Hippos are stupid.", 4),
 			new Response("I have never taken you to the zoo before, Timmy. And I can't take you today.", 2),
 			new Response("I'm glad you're my brother too Timmy. I'll talk to mom and we can go to the zoo.", 1)
 		}));
-		talkWithTimmyHome2.conversations.add(1,new ConversationNode("I can't wait. Tell mom when we're ready to go.", null));
-		talkWithTimmyHome2.conversations.add(2,new ConversationNode("Why not? You don't love me then.", new Response[] {
+		talkWithTimmyHome2.nodes.add(1,new ConversationNode("I can't wait. Tell mom when we're ready to go.", null));
+		talkWithTimmyHome2.nodes.add(2,new ConversationNode("Why not? You don't love me then.", new Response[] {
 			new Response("Timmy, I do love you. I just have a lot to do.", 3),
 			new Response("You're right. Screw you! I don't love you and I'm tired of being your brother.",4)
 		}));
-		talkWithTimmyHome2.conversations.add(3,new ConversationNode("Tell that to mom. It looks like she's going to make you take me. :)", null));
-		talkWithTimmyHome2.conversations.add(4,new ConversationNode("Mom! " + CONTROLLER.player.getName() + " said he doesn't love me!", null,() -> {
+		talkWithTimmyHome2.nodes.add(3,new ConversationNode("Tell that to mom. It looks like she's going to make you take me. :)", null));
+		talkWithTimmyHome2.nodes.add(4,new ConversationNode("Mom! " + CONTROLLER.player.getName() + " said he doesn't love me!", null,() -> {
 			ConversationEvent temp = new ConversationEvent(
 				"Mom Hears that You Don't Love Timmy",
 				CONTROLLER.GAME.creatures.mom,
 				"Your mom turns to you..."
 			);
-			temp.conversations.add(0,new ConversationNode(CONTROLLER.player.getName() + ", did I just hear what I think I heard?", new Response[] {
+			temp.nodes.add(0,new ConversationNode(CONTROLLER.player.getName() + ", did I just hear what I think I heard?", new Response[] {
 				new Response("No! I didn't say that. I was just frustrated with him. He always gets what he wants.", 1),
 				new Response("Yes, he's being a little weasel and I am tired of it.", 4)
 			}));
-			temp.conversations.add(1,new ConversationNode("Well, you need to take your brother to the zoo.\nHe hasn't been in a while and you need to spend some time together.", new Response[] {
+			temp.nodes.add(1,new ConversationNode("Well, you need to take your brother to the zoo.\nHe hasn't been in a while and you need to spend some time together.", new Response[] {
 				new Response("Mom, I just can't. I'm too busy.", 3),
 				new Response("Okay whatever, I'll take him.", 2)
 			}));
-			temp.conversations.add(2,new ConversationNode("Great! Enjoy your time together.", null,() -> {
+			temp.nodes.add(2,new ConversationNode("Great! Enjoy your time together.", null,() -> {
 				CONTROLLER.GAME.controls.getControl('g').setAvailable(true);
 				CONTROLLER.GAME.setCurrentLocation(CONTROLLER.GAME.getLocations().get(1));
 			}));
-			temp.conversations.add(3,new ConversationNode("You're taking him and that's final. Now grab your coat.", null,() -> {
+			temp.nodes.add(3,new ConversationNode("You're taking him and that's final. Now grab your coat.", null,() -> {
 				CONTROLLER.GAME.controls.getControl('g').setAvailable(true);
 				CONTROLLER.GAME.setCurrentLocation(CONTROLLER.GAME.getLocations().get(1));
 			}));
-			temp.conversations.add(4,new ConversationNode("How dare you say that to your brother.\nYou need some time together so that you can make up.\nNow you're definitely taking him to the zoo. Have fun boys!.", null,() -> {
+			temp.nodes.add(4,new ConversationNode("How dare you say that to your brother.\nYou need some time together so that you can make up.\nNow you're definitely taking him to the zoo. Have fun boys!.", null,() -> {
 				CONTROLLER.GAME.controls.getControl('g').setAvailable(true);
 				CONTROLLER.GAME.setCurrentLocation(CONTROLLER.GAME.getLocations().get(1));
 			}));
